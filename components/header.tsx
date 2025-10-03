@@ -24,8 +24,8 @@ export function Header() {
       name: "Case Studies & Op-Ed",
       href: "#",
       subMenu: [
-        { name: "Case Studies", href: "/case-studies" },
-        { name: "Op-ed", href: "/op-ed" },
+        { name: "Case Studies", href: "/case-studies&op-ed/case-studies" },
+        { name: "Op-ed", href: "/case-studies&op-ed/op-ed" },
       ]
     },
     { name: "Resources", href: "/#resources" },
