@@ -1,10 +1,9 @@
 "use client" // This page contains a form, so it needs to be a client component
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { Download } from "lucide-react"
 
 export default function LiveStreamPage() {
   return (
@@ -15,72 +14,67 @@ export default function LiveStreamPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-center">
             Live Stream Consultation Service
           </h1>
+          
+          <article className="prose prose-invert max-w-none mx-auto mt-12 text-muted-foreground">
+            <p>Livestream consultation is our unique service that adopts the consultation session with independent professional like doctor, architect, lawyer and others.</p>
+            <p>The major differences of our livestream consultation with those consultation model are:</p>
+            <ul>
+              <li>Appointment is made a lot easier and interactive</li>
+              <li>Our session is more structured with clear points</li>
+              <li>Will be limited to two hours session segment</li>
+              <li>Can be team of TS consultants on max 15 participants</li>
+              <li>Dedicated sessions dealing your own issues and concerns only</li>
+            </ul>
+            <p>TS memberikan layanan live stream consultation service untuk tiga topik berikut:</p>
+            <ul>
+              <li>Process automation / RPA</li>
+              <li>Data analytics, Machine Learning dan AI</li>
+              <li>Corporate digital transformation</li>
+            </ul>
+            <p>Consultation service ini disesuaikan dengan kebutuhan peminat tergantung posisinya saat ini pada masing masing ketiga topik diatas:</p>
+            <ul>
+              <li>Sedang akan memutuskan untuk menerapkan di organisasi / korporasi</li>
+              <li>Saat tahap implementasi</li>
+              <li>Sudah cukup advanced dalam implementasi</li>
+            </ul>
+            <p>Program ini Sebagian juga untuk mendukung free internship program TS.</p>
+          </article>
 
-          <div className="max-w-none mx-auto text-center mb-12">
-            <p className="text-muted-foreground">
-              TS memberikan layanan live stream consultation untuk tiga topik berikut:
-            </p>
-
-            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 my-6">
-              <div className="flex-1 p-4 bg-muted/50 border border-border rounded-lg flex items-center justify-center">
-                <p className="font-medium text-foreground">Process automation / RPA</p>
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl font-bold text-foreground mb-8">Download Our Flyers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Flyer Kiri */}
+              <div className="flex flex-col items-center p-6 bg-muted/50 border border-border rounded-lg">
+                <img 
+                  src="https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer1.png" 
+                />
+                <Button asChild className="w-full max-w-xs glow-effect">
+                  <a href="/placeholder-flyer-en.pdf" download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Flyer 
+                  </a>
+                </Button>
               </div>
-              <div className="flex-1 p-4 bg-muted/50 border border-border rounded-lg flex items-center justify-center">
-                <p className="font-medium text-foreground">Data analytics, Machine Learning & AI</p>
-              </div>
-              <div className="flex-1 p-4 bg-muted/50 border border-border rounded-lg flex items-center justify-center">
-                <p className="font-medium text-foreground">Corporate digital transformation</p>
+              {/* Flyer Kanan */}
+              <div className="flex flex-col items-center p-6 bg-muted/50 border border-border rounded-lg">
+                <img 
+                  src="https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer24.png" 
+                />
+                <Button asChild className="w-full max-w-xs glow-effect">
+                  <a href="/placeholder-flyer-id.pdf" download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Flyer 
+                  </a>
+                </Button>
               </div>
             </div>
-
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              Korporasi/organisasi peminat dapat mengisi form Permintaan Live Stream Consultation. Sebelum pelaksanaan live stream consultation, TS akan mengontak Anda untuk mempertajam kebutuhan Anda agar TS dapat memenuhinya sesuai permintaan, termasuk waktu yang dimintakan.
-            </p>
           </div>
 
-          <p className="text-muted-foreground text-lg mb-12 text-center">
-            Permintaan Live Stream Consultation TS
-          </p>
-          <form className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="name">Your Name</Label>
-                <Input id="name" placeholder="John Doe" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Your Email</Label>
-                <Input id="email" type="email" placeholder="john.doe@example.com" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Your Phone Number</Label>
-                <Input id="phone" placeholder="+62 812 3456 7890" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="company">Your Company Name</Label>
-                <Input id="company" placeholder="Example Corp" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="position">Your Position</Label>
-                <Input id="position" placeholder="Manager" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="participants">Number of Participants</Label>
-                <Input id="participants" type="number" placeholder="e.g., 50" required />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="subject">Subject</Label>
-              <Input id="subject" placeholder="Topic you are interested in" />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="message">Your Message</Label>
-              <Textarea id="message" placeholder="Tell us more about your needs..." rows={5} />
-            </div>
-
-            <Button type="submit" size="lg" className="w-full md:w-auto">Send Request</Button>
-          </form>
+          <div className="mt-12 p-6 bg-muted/50 border border-border rounded-lg text-center">
+            <p className="text-lg font-medium text-foreground mb-2">Nyatakan Minat Anda</p>
+            <p className="text-muted-foreground">Korporasi atau organisasi peminat dapat menghubungi kami melalui:</p>
+            <p className="mt-4 text-lg"><a href="mailto:contact@bandungtalentsource.com" className="text-primary hover:underline font-semibold">contact@bandungtalentsource.com</a><br/>atau WhatsApp di <a href="https://wa.me/628122101938" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">+62 812-210-1938</a></p>
+          </div>
         </div>
       </main>
       <Footer />

@@ -22,7 +22,8 @@ export function Header() {
         { name: "Live Stream Consultation", href: "/webinar-live/live-stream-consultation" },
       ],
     },
-    { name: "Contact Us", href: "/#contact" },
+    { name: "Free Internship", href: "/free-internship" },
+    { name: "Education Support", href: "/education-support" }
   ]
 
   return (
@@ -50,8 +51,8 @@ export function Header() {
                     {item.name}
                     <ChevronDown className="ml-1 h-4 w-4" />
                   </button>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-md shadow-lg bg-background/80 backdrop-blur-md ring-1 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
-                    <div className="py-1">
+                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 rounded-md shadow-lg bg-background/80 backdrop-blur-md ring-1 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+                     <div className="py-2">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
