@@ -10,38 +10,22 @@ export function HeroSection() {
   const slides = [
     {
       image: "/modern-educational-campus-aerial-view.jpg",
-      title: "We are the Indonesian Process Automation / RPA hands-on expert with six packages of services",
-      subtitle: "",
+      title: "We help companies build new Learning & Development strategies for the digital economy",
+      subtitle: "Adopting Talent Re- & Upskilling Initiatives with deep understanding of Indonesian companies",
       icon: <Zap className="h-8 w-8" />,
     },
     {
       image: "/placeholder-bknhi.png",
-      title: "Accelerate your organization initiative to engage Data analytics and Data science and our data scientist team is ready to support",
-      subtitle: "",
+      title: "Addressing scarcity of skilled talent in Indonesia",
+      subtitle:
+        "Not just consulting — offering integrated talent development, consulting services, and hands-on projects",
       icon: <Cpu className="h-8 w-8" />,
     },
     {
       image: "/professional-development-workshop.png",
-      title: "Mobile application Design & Development, Upgrading, Improvement",
-      subtitle: "",
-      icon: <Network className="h-8 w-8" />,
-    },
-    {
-      image: "/modern-educational-campus-aerial-view.jpg",
-      title: "We help companies to build a new Learning & Development strategy needed in the digital economu by Adopting Talent Re & Upskilling initiative",
-      subtitle: "",
-      icon: <Zap className="h-8 w-8" />,
-    },
-    {
-      image: "/placeholder-bknhi.png",
-      title: "TS provides near turn-key service comprises both consulting and solution development components",
-      subtitle: "",
-      icon: <Cpu className="h-8 w-8" />,
-    },
-    {
-      image: "/professional-development-workshop.png",
-      title: "TS social and community program:",
-      subtitle: "Free internship for students and young professionals learning digital skills and knowledge \n Our support to schools and Universities in their digitalization journey",
+      title: "Programs are fully customized, systematic, measurable",
+      subtitle:
+        "24/7 digital coaching, mentoring, and collaboration with balanced mix of idealism and business discipline",
       icon: <Network className="h-8 w-8" />,
     },
   ]
