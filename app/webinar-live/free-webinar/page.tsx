@@ -1,7 +1,5 @@
 "use client" // This page contains a form, so it needs to be a client component
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,7 +10,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 export default function RequestSeminarPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Header />
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
@@ -137,7 +134,6 @@ export default function RequestSeminarPage() {
           </form>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

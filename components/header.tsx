@@ -35,7 +35,7 @@ export function Header() {
       name: "Case Studies & Op-Ed",
       subMenu: [
         // joan paths feel cleaner; adjust to your routing
-        { name: "Case Studies", href: "/#case-studies" },
+        { name: "Case Studies", href: "/case-studies" },
         { name: "Op-Ed", href: "/op-ed" },
       ],
     },
@@ -64,7 +64,7 @@ export function Header() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-4">
               <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center glow-effect">
                 <Zap className="h-5 w-5 text-accent-foreground" />
               </div>
@@ -81,7 +81,7 @@ export function Header() {
                     {item.name}
                     <ChevronDown className="ml-1 h-4 w-4" />
                   </span>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg bg-background/80 backdrop-blur-md ring-1 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-10">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-56 rounded-md shadow-lg bg-background/80 backdrop-blur-md ring-1 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100 pointer-events-none group-hover:pointer-events-auto z-10">
                     <div className="py-2">
                       {item.subMenu.map((sub) => (
                         <Link

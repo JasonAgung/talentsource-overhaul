@@ -1,7 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,7 +9,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 export default function InternshipPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Header />
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-center">
@@ -148,7 +145,6 @@ export default function InternshipPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }
