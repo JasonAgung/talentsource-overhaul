@@ -1,108 +1,103 @@
-// Lokasi: components/case-studies.tsx
+"use client"
 
-import Link from 'next/link';
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Button } from '@/components/ui/button'
+import { ArrowDownToLine } from 'lucide-react'
 
-// Data untuk semua studi kasus, agar mudah dikelola
 const caseStudiesData = [
-  {
-    title: "Case Study: Fraud Detection System - Mobile & Internet Banking",
-    content: [
-      { type: 'paragraph', text: 'Menggunakan metode gabungan dari Rule Based dan Unsupervised Learning' },
-      { type: 'list', items: [
-          "Unsupervised Learning",
-          "Customer spending behavior",
-          "Customer profiling analysis",
-          "Geographical locations"
-      ]},
-      { type: 'paragraph', text: 'Download study case to read more...' }
-    ],
-    downloadLink: "/path/to/fraud-detection-case-study.pdf"
-  },
-  {
-    title: "Data analytics: Students' social economic grouping",
-    content: [
-      { type: 'paragraph', text: 'During covid19 pandemic, a school plan to allocate support to students that really need it and at the same time skip the physical on-site survey and interview.' },
-      { type: 'paragraph', text: 'Avoid misallocation by analyzing parents/family data (school).' }
-    ],
-    downloadLink: "/path/to/student-grouping-case-study.pdf"
-  },
-  {
-    title: "Data analytics: Finding the right strategy to increase fee-based income of cellular 'pulsa' retailer",
-    content: [
-      { type: 'paragraph', text: 'A bank which is also offering cellular minutes/data quota top-up retail intend to find an effective strategy and program which can increase the purchase volume of customers by analyzing the customer behavior and polite data (bank).' }
-    ],
-    downloadLink: "/path/to/pulsa-retailer-case-study.pdf"
-  },
-  {
-    title: "Machine Learning : Insurance claim checking automation",
-    content: [
-      { type: 'paragraph', text: 'Claim checking is tedious manual task which can be automated using machine learning model to reduce checking manual process cost more than 50% and maintaining the total lost to very minimum level. (insurance company).' },
-      { type: 'paragraph', text: 'Download study case to read more...' }
-    ],
-    downloadLink: "/path/to/insurance-claim-case-study.pdf"
-  },
-  {
-    title: "Case Study Work Process Streamlining & Automation",
-    content: [
-      { type: 'paragraph', text: 'A study case of reviewing business processes, perform BPI/BPR and automate processes in leading financial industry...' },
-      { type: 'paragraph', text: 'Download study case to read more...' }
-    ],
-    downloadLink: "/path/to/process-streamlining-case-study.pdf"
-  },
-  {
-    title: "Application User-Friendliness and Smartness (Knowledge Management Function)",
-    content: [
-      { type: 'paragraph', text: 'This case is about internal essential application used by the call center agents and involves a knowledge management system.' },
-      { type: 'paragraph', text: 'Download study case to read more...' }
-    ],
-    downloadLink: "/path/to/knowledge-management-case-study.pdf"
-  },
+    {
+      title: "Fraud Detection System - Mobile & Internet Banking",
+      description: "Utilizing a hybrid method of Rule-Based and Unsupervised Learning.",
+      tags: ["AI/ML", "Banking", "Security"],
+      downloadLink: "/path/to/fraud-detection-case-study.pdf"
+    },
+    {
+      title: "Data Analytics: Students' Social Economic Grouping",
+      description: "Avoiding misallocation of student aid by analyzing parental/family data without physical surveys during the pandemic.",
+      tags: ["Data Analytics", "Education"],
+      downloadLink: "/path/to/student-grouping-case-study.pdf"
+    },
+    {
+      title: "Data Analytics: Strategy for Fee-Based Income of Cellular Retailers",
+      description: "Analyzing customer behavior to develop effective strategies for increasing purchase volume.",
+      tags: ["Data Analytics", "Retail", "Banking"],
+      downloadLink: "/path/to/pulsa-retailer-case-study.pdf"
+    },
+    {
+      title: "Machine Learning: Insurance Claim Checking Automation",
+      description: "Automating the tedious manual task of claim checking to reduce costs by over 50% while maintaining minimal loss.",
+      tags: ["AI/ML", "Insurance", "Automation"],
+      downloadLink: "/path/to/insurance-claim-case-study.pdf"
+    },
+    {
+      title: "Work Process Streamlining & Automation",
+      description: "A case study on reviewing business processes, performing BPI/BPR, and automating processes in a leading financial institution.",
+      tags: ["RPA", "Finance", "BPR"],
+      downloadLink: "/path/to/process-streamlining-case-study.pdf"
+    },
+    {
+      title: "Application User-Friendliness and Smartness",
+      description: "Improving a call center's essential internal application by integrating a smart knowledge management system.",
+      tags: ["UX/UI", "Knowledge Management"],
+      downloadLink: "/path/to/knowledge-management-case-study.pdf"
+    },
 ];
+
+const gridContainerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+}
 
 export default function CaseStudies() {
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Grid untuk semua kartu studi kasus */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudiesData.map((study, index) => (
-            <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-6 flex flex-col shadow-sm hover:shadow-md transition-shadow">
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{study.title}</h3>
-
-              {/* Konten dinamis (paragraf/list) */}
-              <div className="flex-grow text-gray-600 space-y-3 text-sm">
-                {study.content.map((block, blockIndex) => {
-                  if (block.type === 'paragraph') {
-                    return <p key={blockIndex}>{block.text}</p>;
-                  }
-                  if (block.type === 'list') {
-                    return (
-                      <ul key={blockIndex} className="list-disc list-inside space-y-1 pl-2">
-                        {block.items?.map((item, itemIndex) => (
-                          <li key={itemIndex}>{item}</li>
+    <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        variants={gridContainerVariants}
+        initial="hidden"
+        // The "animate" prop is changed to "whileInView" to trigger animation on scroll
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+    >
+      {caseStudiesData.map((study, index) => (
+        <motion.div 
+            key={index}
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.2 }}
+        >
+            <Card className="h-full flex flex-col bg-card border shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                    <CardTitle className="text-xl font-bold text-foreground">{study.title}</CardTitle>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                        {study.tags.map(tag => (
+                            <div key={tag} className="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-primary/10 text-primary rounded-full">
+                                {tag}
+                            </div>
                         ))}
-                      </ul>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-
-              {/* Tombol Download */}
-              <div className="mt-6">
-                <Link 
-                  href={study.downloadLink} 
-                  className="inline-block w-full text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-md transition-colors"
-                >
-                  Download Case Study
-                </Link>
-              </div>
-
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+                    </div>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <p className="text-muted-foreground">{study.description}</p>
+                </CardContent>
+                <CardFooter>
+                    <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                        <Link href={study.downloadLink}>
+                            <ArrowDownToLine className="mr-2 h-4 w-4" />
+                            Download
+                        </Link>
+                    </Button>
+                </CardFooter>
+            </Card>
+        </motion.div>
+      ))}
+    </motion.div>
+  )
 }

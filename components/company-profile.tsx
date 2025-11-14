@@ -1,126 +1,114 @@
-import Image from 'next/image';
+"use client"
+
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ArrowDownToLine } from 'lucide-react'
+
+const countries = [
+  "Afghanistan", "Indonesia", "Malaysia", "Singapore", "United States", "United Kingdom",
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+}
 
 export default function CompanyProfilePage() {
-  // Daftar negara untuk dropdown, bisa diperbanyak atau diambil dari API
-  const countries = [
-    "Afghanistan",
-    "Indonesia",
-    "Malaysia",
-    "Singapore",
-    "United States",
-    "United Kingdom",
-  ];
-
   return (
-    <main>
-      {/* === Title Bar Section === */}
-      <section className="bg-blue-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold tracking-wider">
-            COMPANY PROFILE
-          </h1>
-          {/* <div className="text-sm">
-            <span>Home</span> / <span className="font-semibold">Company Profile</span>
-          </div> */}
-        </div>
-      </section>
-
+    <div className="space-y-16 sm:space-y-24">
       {/* === Main Content Section === */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-            
-            <div className="space-y-6">
-              <div className="aspect-video overflow-hidden rounded-lg shadow-md">
-                <Image
-                  src="/company-profile.jpg" 
-                  alt="Company event at Telkomsel"
-                  width={600}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="text-gray-600 leading-relaxed">
-                TalentSource is truly Indonesian Consulting and Solution company which
-                comprises the Indonesian experienced and highly knowledgeable
-                partners with hands-on experience and most recent techniques, ready to
-                help companies/organizations in Indonesia in their digital
-                transformation journey.
-              </p>
-            </div>
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="lg:col-span-3 space-y-6" variants={itemVariants}>
+          <div className="aspect-video overflow-hidden rounded-2xl border border-border/50 shadow-lg">
+            <Image
+              src="/company-profile.jpg"
+              alt="Company event at Telkomsel"
+              width={800}
+              height={450}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="prose prose-invert prose-lg max-w-none text-muted-foreground">
+            <p>
+              TalentSource is a truly Indonesian Consulting and Solution company which
+              comprises the Indonesian experienced and highly knowledgeable
+              partners with hands-on experience and most recent techniques, ready to
+              help companies/organizations in Indonesia in their digital
+              transformation journey.
+            </p>
+          </div>
+        </motion.div>
 
-            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                Get the TS Company Profile
-              </h2>
-              <form className="space-y-5">
-                <div>
-                  <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 mb-1">
-                    First name
-                  </label>
-                  <input
-                    type="text"
-                    id="first-name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
+        <motion.div className="lg:col-span-2" variants={itemVariants}>
+          <Card className="bg-card/80 border-border/50">
+            <CardHeader>
+              <CardTitle className="text-2xl text-foreground">Download Company Profile</CardTitle>
+              <CardDescription>Get the complete overview of our services and capabilities.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="first-name">First name</Label>
+                    <Input id="first-name" placeholder="Budi" className="bg-background/50" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="last-name">Last name</Label>
+                    <Input id="last-name" placeholder="Santoso" className="bg-background/50" />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Last name
-                  </label>
-                  <input
-                    type="text"
-                    id="last-name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
+                <div className="space-y-2">
+                  <Label htmlFor="company">Company/Organization</Label>
+                  <Input id="company" placeholder="PT Maju Mundur" className="bg-background/50" />
                 </div>
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                    Company/Organization
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
+                <div className="space-y-2">
+                  <Label htmlFor="work-email">Work email</Label>
+                  <Input id="work-email" type="email" placeholder="budi@example.com" className="bg-background/50" />
                 </div>
-                <div>
-                  <label htmlFor="work-email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Work email
-                  </label>
-                  <input
-                    type="email"
-                    id="work-email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
-                    Select Country
-                  </label>
-                  <select
-                    id="country"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {countries.map((country) => (
-                      <option key={country}>{country}</option>
-                    ))}
-                  </select>
+                <div className="space-y-2">
+                  <Label htmlFor="country">Country</Label>
+                  <Select>
+                    <SelectTrigger id="country" className="bg-background/50">
+                      <SelectValue placeholder="Select a country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country} value={country.toLowerCase().replace(" ", "-")}>
+                          {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-auto bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-8 rounded-md transition-colors"
-                  >
+                  <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <ArrowDownToLine className="mr-2 h-5 w-5" />
                     Download
-                  </button>
+                  </Button>
                 </div>
               </form>
-            </div>
-
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+            </CardContent>
+          </Card>
+        </motion.div>
+      </motion.div>
+    </div>
+  )
 }

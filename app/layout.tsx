@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import { Header } from "@/components/header" 
 import { Footer } from "@/components/footer" 
+import { PageTransition } from "@/components/page-transition"
 
 export const metadata: Metadata = {
   title: "TalentSource - Future of Talent Development",
@@ -22,10 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} bg-background`}>
         <Header /> 
         <main>
-          <Suspense fallback={null}>{children}</Suspense>
+          <Suspense fallback={null}>
+            <PageTransition>{children}</PageTransition>
+          </Suspense>
         </main>
         <Footer /> 
         <Analytics />

@@ -2,23 +2,17 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Search, Zap, ChevronDown } from "lucide-react"
+import { Menu, X, Zap, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type NavItem =
   | { name: string; href: string; subMenu?: undefined }
   | { name: string; href?: string; subMenu: { name: string; href: string }[] }
 
-export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-
-  // Unified navigation (joan + main), using a single `subMenu` API
-  const navigation: NavItem[] = [
+const navigation: NavItem[] = [
     { name: "Home", href: "/" },
-
-    // From main
     {
       name: "About Us",
       subMenu: [
@@ -27,20 +21,14 @@ export function Header() {
         { name: "Corporate Partners", href: "/about-us/corporate-partners" },
       ],
     },
-
     { name: "Services", href: "/#services" },
-
-    // Merge of “Case Studies & Op-Ed”
     {
       name: "Case Studies & Op-Ed",
       subMenu: [
-        // joan paths feel cleaner; adjust to your routing
         { name: "Case Studies", href: "/case-studies" },
         { name: "Op-Ed", href: "/op-ed" },
       ],
     },
-
-    // From joan
     {
       name: "Free Webinar & Live Consultation",
       subMenu: [
@@ -48,97 +36,172 @@ export function Header() {
         { name: "Live Stream Consultation", href: "/webinar-live/live-stream-consultation" },
       ],
     },
-
-    // From joan
     { name: "Free Internship", href: "/free-internship" },
     { name: "Education Support", href: "/education-support" },
-
-    // From main
     { name: "Resources", href: "/#resources" },
     { name: "Contact", href: "/#contact" },
-  ]
+]
+
+const MotionLink = motion(Link)
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null)
+
+  const headerVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
+  }
+
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: "auto", transition: { duration: 0.3, ease: "easeOut" } },
+  }
+
+  const mobileLinkVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.05,
+        duration: 0.2,
+        ease: "easeOut",
+      },
+    }),
+  }
+  
+  const dropdownVariants = {
+    initial: { opacity: 0, y: 10, scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.2, ease: "easeOut" } },
+    exit: { opacity: 0, y: 10, scale: 0.95, transition: { duration: 0.15, ease: "easeIn" } },
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-effect border-b border-accent/20">
+    <motion.header 
+      className="sticky top-0 z-50 w-full glass-effect"
+      variants={headerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="flex items-center space-x-4">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center glow-effect">
-                <Zap className="h-5 w-5 text-accent-foreground" />
-              </div>
+          <MotionLink href="/" className="flex items-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <div className="flex items-center space-x-3">
+              <motion.div 
+                className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center"
+                animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 5 }}
+              >
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </motion.div>
               <span className="text-2xl font-bold shimmer-text">TalentSource</span>
             </div>
-          </Link>
+          </MotionLink>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-10">
+          <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) =>
               item.subMenu ? (
-                <div key={item.name} className="relative group">
-                  <span className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:glow-effect cursor-default">
+                <div 
+                  key={item.name} 
+                  className="relative"
+                  onMouseEnter={() => setHoveredMenu(item.name)}
+                  onMouseLeave={() => setHoveredMenu(null)}
+                >
+                  <span className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
                     {item.name}
-                    <ChevronDown className="ml-1 h-4 w-4" />
+                    <ChevronDown className={cn("ml-1 h-4 w-4 transition-transform", { "rotate-180": hoveredMenu === item.name })} />
                   </span>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-56 rounded-md shadow-lg bg-background/80 backdrop-blur-md ring-1 ring-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100 pointer-events-none group-hover:pointer-events-auto z-10">
-                    <div className="py-2">
-                      {item.subMenu.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          href={sub.href}
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:bg-accent/10 hover:text-primary transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  <AnimatePresence>
+                    {hoveredMenu === item.name && (
+                      <motion.div 
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-56"
+                        variants={dropdownVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                      >
+                        <div className="rounded-md shadow-lg bg-card/80 backdrop-blur-md ring-1 ring-border py-2">
+                          {item.subMenu.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className="block px-4 py-2 text-sm text-muted-foreground hover:bg-accent/20 hover:text-foreground transition-colors"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ) : (
-                <Link
+                <MotionLink
                   key={item.name}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:glow-effect relative group"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                  whileHover={{ y: -2 }}
                 >
                   {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                </MotionLink>
               )
             )}
           </nav>
 
           {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="hover:bg-accent/10 hover:text-accent">
-              <Search className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="sm" className="btn-futuristic neon-border bg-transparent hover:bg-accent/10">
-              Free Consultation
-            </Button>
-            <Button size="sm" className="btn-futuristic bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent glow-effect">
-              Get Started
-            </Button>
+          <div className="hidden md:flex items-center space-x-2">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Button variant="ghost" size="sm" className="hover:bg-accent/20 text-muted-foreground hover:text-foreground">
+                Log In
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-5">
+                Get Started
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-muted-foreground">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={isMenuOpen ? "x" : "menu"}
+                  initial={{ rotate: 45, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -45, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </motion.div>
+              </AnimatePresence>
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
+        <AnimatePresence>
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t border-accent/20 glass-effect">
-              {navigation.map((item) =>
+          <motion.div 
+            className="md:hidden overflow-hidden"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border">
+              {navigation.map((item, i) =>
                 item.subMenu ? (
-                  <div key={item.name}>
+                  <motion.div key={item.name} custom={i} variants={mobileLinkVariants} initial="hidden" animate="visible">
                     <button
                       onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                      className="w-full flex justify-between items-center px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-lg transition-all duration-300"
+                      className="w-full flex justify-between items-center px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground rounded-lg transition-colors"
                     >
                       <span>{item.name}</span>
                       <ChevronDown
@@ -147,44 +210,56 @@ export function Header() {
                         })}
                       />
                     </button>
+                    <AnimatePresence>
                     {openDropdown === item.name && (
-                      <div className="pl-4 mt-1 space-y-1">
+                      <motion.div 
+                        className="pl-4 mt-1 space-y-1"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                      >
                         {item.subMenu.map((sub) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-lg transition-all duration-300"
+                            className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent/10 rounded-lg transition-colors"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             {sub.name}
                           </Link>
                         ))}
-                      </div>
+                      </motion.div>
                     )}
-                  </div>
+                    </AnimatePresence>
+                  </motion.div>
                 ) : (
-                  <Link
+                  <MotionLink
                     key={item.name}
                     href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-lg transition-all duration-300"
+                    custom={i}
+                    variants={mobileLinkVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="block px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent/10 rounded-lg transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
-                  </Link>
+                  </MotionLink>
                 )
               )}
-              <div className="pt-4 space-y-2">
-                <Button variant="outline" className="w-full btn-futuristic neon-border bg-transparent">
-                  Free Consultation
+              <motion.div className="pt-4 space-y-2" custom={navigation.length} variants={mobileLinkVariants} initial="hidden" animate="visible">
+                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Log In
                 </Button>
-                <Button className="w-full btn-futuristic bg-gradient-to-r from-accent to-primary glow-effect">
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   Get Started
                 </Button>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   )
 }

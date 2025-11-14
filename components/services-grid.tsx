@@ -1,136 +1,118 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { Cog, Brain, Smartphone, Users, Globe, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Cog, Brain, Smartphone, Users, Globe, ChevronRight } from "lucide-react"
+import Link from "next/link"
+
+const services = [
+  {
+    icon: Cog,
+    title: "Work Process Automation (RPA)",
+    description: "Streamlining business processes with Robotic Process Automation for maximum efficiency.",
+    href: "/services/rpa",
+  },
+  {
+    icon: Brain,
+    title: "AI & Machine Learning Solutions",
+    description: "Leveraging data science to build intelligent solutions that drive business growth.",
+    href: "/services/ai-ml",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile Application Development",
+    description: "Designing and developing intuitive and powerful mobile apps for iOS and Android.",
+    href: "/services/mobile-apps",
+  },
+  {
+    icon: Users,
+    title: "Talent Re- & Upskilling",
+    description: "Future-proofing your workforce with customized digital skill development programs.",
+    href: "/services/talent-upskilling",
+  },
+  {
+    icon: Globe,
+    title: "Strategic Digitalization",
+    description: "Guiding corporate digital transformation initiatives from concept to implementation.",
+    href: "/services/digitalization",
+  },
+  {
+    icon: Users,
+    title: "Education Support",
+    description: "Partnering with educational institutions to integrate modern technology and curriculum.",
+    href: "/education-support",
+  },
+]
+
+// Simplified variant for the whole grid container
+const gridContainerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
 
 export function ServicesGrid() {
-  const services = [
-    // Service #1: RPA
-    {
-      icon: Cog,
-      title: "Work Process Streamlining & Automation (RPA)",
-      // joan wording (clean), keep main's brochure flag
-      description:
-        "We are the Indonesian Process Automation / RPA hands-on expert with six packages of services:",
-      points: [
-        "Free webinar RPA introduction",
-        "Live coaching/ workshop on 'Make your very first robots'",
-        "Proof of Concept (PoC) process automation trial case",
-        "Consulting Service: 'Discovering the Right Strategy to start RPA'",
-        "Process automation / RPA design and development for your organization",
-        "Consulting service: 'The Invisible Reality Behind Process Automation'",
-      ],
-      hasBrochure: true,
-    },
-
-    // Service #2: Data Science
-    {
-      icon: Brain,
-      title: "Data Science, Machine Learning and AI Solutions",
-      description:
-        "Accelerate your organization initiative to engage Data analytics and Data science and our data scientist team is ready to support:",
-      points: [
-        "Leverage your sleeping big data into strategic business assets",
-        "Developing data analytics, machine learning and AI capabilities for your organization",
-        "Help your corporation to become an insight-driven organization",
-      ],
-    },
-
-    // Service #3: Mobile App
-    {
-      icon: Smartphone,
-      title: "Mobile Application Design & Development",
-      description:
-        "We offer comprehensive mobile application services, from creation to enhancement:",
-      points: [
-        "Design and develop new m-app",
-        "Review your current m-app, upgrade its features and capabilities",
-        "Develop internal dashboard for the m-app operational monitoring",
-        "Adding machine learning and AI capabilities to the m-app",
-        "Redesign existing m-app, with better UI/UX and robust security",
-      ],
-    },
-
-    // Service #4: Talent Re & Upskilling
-    {
-      icon: Users,
-      title: "Talent Re- & Upskilling for Digital Challenges",
-      description:
-        "We help companies to build a new Learning & Development strategy by moving away from traditional classroom training and adopting Talent Re and Upskilling strategy:",
-      points: [
-        "Coaching and mentoring system to develop talents",
-        "Help talents to engage and catch up the needs of digital work style",
-        "TS provides remote coaching services to upskill companies' talents in area of process automation, data science, and work process streamlining",
-      ],
-    },
-
-    // Service #5: Strategic Domains
-    {
-      icon: Globe,
-      title: "Strategic & Domain-Specific Digitalization",
-      description:
-        "TS provides near turn-key service comprising both consulting and solution development to help Indonesian corporations benefit from the progress of digital technology and culture:",
-      points: [
-        "Strategic domain: Corporate digital transformation initiative",
-        "Specific focus: digital product and service development, digitalization and automation of internal processes, digitalization of customer-facing processes",
-      ],
-    },
-  ]
-
   return (
-    <section id="services" className="py-24">
+    <section id="services" className="py-24 bg-secondary/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            TS Services Menu
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
+            Our Core Services
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            TS resources, the partners and the engineering team, comprehend the set of expertise
-            needed for TS to perform its mission and deliver its services with high standard.
-            These are the most needed services when it comes to corporate/ organization digitalization:
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            We provide a suite of services designed to empower your organization's digital transformation and talent development journey.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-20">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={gridContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {services.map((service, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
-              {/* Icon + Title tile */}
-              <div className="bg-gray-100 p-8 rounded-xl flex flex-col items-center justify-center text-center h-full">
-                <service.icon className="w-20 h-20 text-gray-700" strokeWidth={1.5} />
-                <h3 className="mt-5 text-xl font-semibold text-gray-800">
+            <motion.div
+              key={index}
+              className="h-full p-8 rounded-2xl bg-card border overflow-hidden relative flex flex-col shadow-sm"
+              whileHover={{ scale: 1.03, y: -5, boxShadow: "0px 10px 20px rgba(0,0,0,0.05)" }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex-shrink-0 mb-6">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <service.icon className="w-8 h-8 text-primary" />
+                </div>
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-xl font-bold text-foreground mb-3">
                   {service.title}
                 </h3>
-              </div>
-
-              {/* Description + bullets + CTA */}
-              <div className="md:col-span-2">
-                <p className="text-xl font-semibold text-gray-800 mb-6">
+                <p className="text-muted-foreground">
                   {service.description}
                 </p>
-
-                {service.points?.length ? (
-                  <ul className="space-y-4">
-                    {service.points.map((point, pointIndex) => (
-                      <li key={pointIndex} className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-orange-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-
-                {service.hasBrochure ? (
-                  <div className="mt-8 flex flex-wrap gap-4">
-                    <Button className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-6 text-base">
-                      Download Brochure
-                    </Button>
-                    <Button variant="outline" className="px-6 py-6 text-base">
-                      Learn more
-                    </Button>
-                  </div>
-                ) : null}
               </div>
-            </div>
+              <div className="mt-6">
+                <Link href={service.href} passHref>
+                  <Button variant="link" className="p-0 text-primary hover:text-primary/80">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

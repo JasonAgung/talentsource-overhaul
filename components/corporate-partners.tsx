@@ -1,68 +1,87 @@
-import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
+"use client"
+
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Card, CardContent } from "@/components/ui/card"
+import { CheckCircle2 } from 'lucide-react'
+
+const partnershipCriteria = [
+  "Can complement TS in order to achieve its vision statement",
+  "Located in Indonesia, most preferably in Bandung",
+  "A young and vibrant company or startup",
+  "Believe in and are fully aligned with the TS mission statement",
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+}
 
 export function CorporatePartners() {
-  const partnershipCriteria = [
-    "can complement TS in order to achieve its vision statement",
-    "Located in Indonesia, most preferably in Bandung",
-    "Young and vibrant company or startup",
-    "Believe and fully aligned to TS mission statement",
-  ];
-
   return (
-    <>
-      <section className="bg-blue-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold tracking-wider">
-            CORPORATE PARTNERS
-          </h1>
-          {/* <div className="text-sm">
-            <span>Home</span> / <span className="font-semibold">Corporate Partners</span>
-          </div> */}
-        </div>
-      </section>
+    <motion.div 
+      className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div className="space-y-8" variants={itemVariants}>
+        <h2 className="text-3xl font-bold text-foreground">
+          Our Partnership Criteria
+        </h2>
+        <ul className="space-y-5">
+          {partnershipCriteria.map((criteria, index) => (
+            <motion.li 
+              key={index} 
+              className="flex items-start gap-4"
+              custom={index}
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                visible: (i) => ({
+                  opacity: 1,
+                  x: 0,
+                  transition: { delay: i * 0.1, ease: 'easeOut' }
+                })
+              }}
+            >
+              <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <span className="text-lg text-muted-foreground">{criteria}</span>
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
 
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-            
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-800">
-                TS has standing partnership agreement with company which:
-              </h2>
-              <ul className="space-y-4">
-                {partnershipCriteria.map((criteria, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center mr-3 mt-1">
-                      <ChevronRight className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-gray-600 leading-relaxed">{criteria}</span>
-                  </li>
-                ))}
-              </ul>
+      <motion.div variants={itemVariants}>
+        <Card className="bg-card/80 border-border/50">
+          <CardContent className="p-8 text-center">
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/corporate-partners.png"
+                alt="Corporate Partners"
+                width={300}
+                height={100}
+                className="object-contain"
+              />
             </div>
-
-            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 text-center">
-              <div className="flex justify-center mb-6">
-                <Image
-                  src="/corporate-partners.png" 
-                  alt="corporate-partners"
-                  width={300}
-                  height={100}
-                  className="object-contain"
-                />
-              </div>
-              <p className="text-gray-700 leading-relaxed text-left">
-                In December 2019, TS sealed-in a strategic long-term
-                partnership agreement with a vibrant high performing digital
-                service start-up in Bandung which strategically combine
-                the complementing resources of the two companies
+            <div className="prose prose-invert prose-lg max-w-none mx-auto text-muted-foreground">
+              <p>
+                In December 2019, TS sealed a strategic long-term
+                partnership agreement with a vibrant, high-performing digital
+                service start-up in Bandung, strategically combining
+                the complementing resources of the two companies.
               </p>
             </div>
-
-          </div>
-        </div>
-      </section>
-    </>
-  );
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
+  )
 }
