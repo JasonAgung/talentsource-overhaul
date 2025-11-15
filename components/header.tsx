@@ -111,12 +111,9 @@ export function Header() {
         <div className="w-[90vw] max-w-xs md:max-w-6xl mx-auto">
           <div className="bg-background/30 backdrop-blur-md border border-border rounded-full px-4 py-3 md:px-6 md:py-2">
             <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-200 cursor-pointer">
+              <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-200 cursor-pointer mr-4">
                 <div className="flex items-center space-x-4">
-                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-accent to-primary flex items-center justify-center glow-effect">
-                    <Zap className="h-5 w-5 text-accent-foreground" />
-                  </div>
-                  <span className="text-2xl font-bold shimmer-text">TalentSource</span>
+                  <img src="/ts-logo.png" alt="TalentSource Logo" className="h-10 w-auto" />
                 </div>
               </Link>
               <div className="hidden md:flex items-center space-x-8">
