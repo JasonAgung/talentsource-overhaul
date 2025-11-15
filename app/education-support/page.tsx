@@ -29,46 +29,62 @@ export default function EducationSupportPage() {
           <section className="py-16 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
               <article className="prose dark:prose-invert max-w-none mx-auto mt-12 text-muted-foreground space-y-6">
-                <div>
-                  <h3 className="text-foreground font-semibold">Program Pengembangan Sosial dan Komunitas</h3>
-                  <p>Program ini ditujukan untuk:</p>
-                  <ul>
-                    <li>Pengurus Yayasan Pendidikan, khususnya swasta</li>
-                    <li>Tim kantor Yayasan Pendidikan</li>
+                <div className="space-y-4">
+                  <h3 className="text-foreground font-semibold text-xl">Program Pengembangan Sosial dan Komunitas</h3>
+                  <p>Program ini dirancang khusus untuk mendukung:</p>
+                  <ul className="list-disc list-inside ml-4 space-y-1">
+                    <li>Pengurus Yayasan Pendidikan (khususnya swasta)</li>
+                    <li>Tim Kantor Yayasan Pendidikan</li>
                     <li>
-                      Ekesekutif/ manajemen sekolah/ universitas (Kepala sekolah dan para wakasek, Ketua sekolah tinggi
-                      dan para wakil ketua, Rektor dan para wakil rektor)
+                      Eksekutif/Manajemen Sekolah/Universitas (Kepala Sekolah, Wakil Kepala Sekolah, Ketua Sekolah
+                      Tinggi, Wakil Ketua, Rektor, dan Wakil Rektor)
                     </li>
                   </ul>
-                </div>
-                <div>
-                  <p>
-                    Program ini bukan program ‘fund raising’, melainkan bantuan TS dalam bentuk sharing dan coaching
-                    dengan tujuan:
-                  </p>
-                  <ul>
-                    <li>Menyegarkan sistem dan praktek manajemen dan governance sekolah/ universitas</li>
-                    <li>
-                      Menyelaraskan proses kerja sekolah dan universitas dengan teknik/cara baru yang sudah jamak
-                      digunakan pada organisasi yang masuk ke era ekonomi digital
-                    </li>
-                    <li>
-                      Menyiapkan sekolah/universitas untuk melanjutkan perjalanan dan tetap relevan dengan gaya-hidup
-                      digital, sehingga sekolah/universitas tetap relevan di mata Gen Z, Alpha, Beta dst
-                    </li>
-                  </ul>
-                </div>
-              </article>
-
-              <div className="mt-16 border-t border-border pt-12">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-foreground">Permintaan Layanan Dukungan (Edu Support)</h2>
-                  <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
-                    TS akan membantu memberikan tuntunan, pengalaman, dan saran yang diperlukan lembaga pendidikan
-                    untuk menyegarkan sistem dan siap memasuki era digital maju. Kami akan berusaha sebaik mungkin
-                    memenuhi permintaan dan membantu Anda.
-                  </p>
-                </div>
+                </div><div className="space-y-4">
+  <p>
+    Fokus utama program ini adalah berbagi pengetahuan dan coaching, bukan penggalangan dana. Kami
+    bertujuan untuk:
+  </p>
+  <ul className="list-disc list-inside ml-4 space-y-1">
+    <li>Menyegarkan sistem dan praktik manajemen serta tata kelola sekolah/universitas.</li>
+    <li>
+      Menyelaraskan proses kerja dengan teknik dan metode yang relevan di era ekonomi digital.
+    </li>
+    <li>
+      Mempersiapkan sekolah/universitas agar tetap relevan dan adaptif terhadap gaya hidup digital
+      generasi mendatang (Gen Z, Alpha, Beta, dll.).
+    </li>
+  </ul>
+</div>
+                            </article>
+              
+                            <div className="mt-12 pt-8 border-t border-border">
+                              <h2 className="text-2xl font-bold text-foreground text-center mb-8">Manfaat Dukungan Pendidikan Kami</h2>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="bg-card p-6 rounded-lg shadow-md border border-border text-center">
+                                  <h3 className="text-xl font-semibold text-foreground mb-2">Sistem Manajemen Modern</h3>
+                                  <p className="text-muted-foreground">Penyegaran sistem dan praktik manajemen serta tata kelola yang relevan dengan era digital.</p>
+                                </div>
+                                <div className="bg-card p-6 rounded-lg shadow-md border border-border text-center">
+                                  <h3 className="text-xl font-semibold text-foreground mb-2">Adaptasi Era Digital</h3>
+                                  <p className="text-muted-foreground">Penyelarasan proses kerja dengan teknik dan cara baru yang sesuai dengan ekonomi digital.</p>
+                                </div>
+                                <div className="bg-card p-6 rounded-lg shadow-md border border-border text-center">
+                                  <h3 className="text-xl font-semibold text-foreground mb-2">Relevansi Generasi Mendatang</h3>
+                                  <p className="text-muted-foreground">Mempersiapkan lembaga pendidikan agar tetap relevan di mata Gen Z, Alpha, Beta, dan generasi selanjutnya.</p>
+                                </div>
+                              </div>
+                            </div>
+              
+                            <div className="mt-16 border-t border-border pt-12">
+                              <div className="text-center mb-12">
+                                <h2 className="text-3xl font-bold text-foreground">Permintaan Layanan Dukungan (Edu Support)</h2>
+                                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+                                  TalentSource siap memberikan panduan, pengalaman, dan saran untuk membantu lembaga pendidikan Anda
+                                  menyegarkan sistem dan beradaptasi dengan era digital. Kami berkomitmen untuk mendukung kebutuhan
+                                  Anda.
+                                </p>
+                              </div>
 
                 <form className="space-y-8">
                   <div className="space-y-2">

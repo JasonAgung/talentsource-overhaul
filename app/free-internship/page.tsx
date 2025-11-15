@@ -29,51 +29,77 @@ export default function InternshipPage() {
           <section className="py-16 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
               <article className="prose dark:prose-invert max-w-none mx-auto mt-12 text-muted-foreground space-y-6">
-                <p>
-                  TalentSource opens internship and on-the-job experience programs for students and young
-                  professionals. This is an ideal ‘on-boarding’ program for participants before joining any real
-                  activities and career in life. Participants will be assigned a real project with real targets; all
-                  will be done digitally and an experienced mentor where real-life experience will become a unique
-                  precious value.
-                </p>
-
-                <div>
-                  <h3 className="text-foreground font-semibold">Grow Through Us Program</h3>
+                <div className="space-y-6">
                   <p>
-                    Various professional areas, ranging from specific skill until more managerial, are available in
-                    this ‘Grow Through Us’ program which all related to digital knowledge and skill such as:
+                    TalentSource offers internship and on-the-job experience programs designed for students and young
+                    professionals. This program serves as an ideal 'on-boarding' experience, preparing participants
+                    for real-world career challenges.
                   </p>
-                  <ul>
-                    <li>Human resource management</li>
-                    <li>Marketing and commerce</li>
-                    <li>Data science</li>
-                    <li>Process automation</li>
-                    <li>Build and grow start-up business</li>
-                    <li>Software development lifecycle (software engineering)</li>
-                  </ul>
-                </div>
-
-                <p>
-                  Participants can exercise its maximum capacity and develop its early stage of its professional
-                  strength through this honest and helpful no-nonsense program which is unique to TS. Participants
-                  maintain its full freedom not to join TS after the program and pursue its career in other
-                  opportunity. Those who perform and decide to joint TS group business are also welcome.
-                </p>
-                <p>
-                  Depending on the volume of participants’ interest, if required, TS will get more industry
-                  experienced senior volunteers, including those who work in global companies in Indonesia, to spare
-                  their time and energy to provide mentorship service to this program.
-                </p>
-              </article>
+                  <p>
+                    Interns will be assigned to real digital projects with tangible targets, guided by experienced
+                    mentors. This hands-on approach ensures that participants gain unique and valuable real-life
+                    experience.
+                  </p>
+                
+                  <div>
+                    <h3 className="text-foreground font-semibold">Grow Through Us Program</h3>
+                    <p>
+                      Our 'Grow Through Us' program offers opportunities across various professional areas, from
+                      specific skills to managerial roles, all focused on digital knowledge and capabilities. These
+                      include:
+                    </p>
+                    <ul className="list-disc list-inside ml-4 space-y-1">
+                      <li>Human resource management</li>
+                      <li>Marketing and commerce</li>
+                      <li>Data science</li>
+                      <li>Process automation</li>
+                      <li>Build and grow start-up business</li>
+                      <li>Software development lifecycle (software engineering)</li>
+                    </ul>
+                  </div>
+                
+                  <p>
+                    This unique TalentSource program empowers participants to develop their professional strengths
+                    and maximize their potential in an honest and supportive environment. Participants have the
+                    freedom to pursue other opportunities after the program, or they are welcome to join the
+                    TalentSource group business if they perform well and choose to do so.
+                  </p>
+                  <p>
+                    To ensure the highest quality mentorship, TalentSource will engage experienced senior volunteers
+                    from various industries, including those from global companies in Indonesia, to provide guidance
+                    and support, especially if there is a high volume of participant interest.
+                  </p>
+                  </div>
+                  <div className="mt-12 pt-8 border-t border-border">
+                    <h2 className="text-2xl font-bold text-foreground text-center mb-8">Why Join Our Internship Program?</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="bg-card p-6 rounded-lg shadow-md border border-border">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">Real-World Projects</h3>
+                        <p className="text-muted-foreground">Work on actual digital projects with clear targets, gaining practical experience that matters.</p>
+                      </div>
+                      <div className="bg-card p-6 rounded-lg shadow-md border border-border">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">Expert Mentorship</h3>
+                        <p className="text-muted-foreground">Learn from experienced mentors who provide guidance and insights into the industry.</p>
+                      </div>
+                      <div className="bg-card p-6 rounded-lg shadow-md border border-border">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">Skill Development</h3>
+                        <p className="text-muted-foreground">Develop professional strengths and digital skills across various domains.</p>
+                      </div>
+                      <div className="bg-card p-6 rounded-lg shadow-md border border-border">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">Career Flexibility</h3>
+                        <p className="text-muted-foreground">Gain valuable experience without commitment, with opportunities to join TalentSource if you excel.</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
 
               <div className="mt-16 border-t border-border pt-12">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold text-foreground">Formulir Aplikasi Internship</h2>
                   <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                    Manfaatkan program ini untuk mengenal dunia kerja di era digital dengan magang disertai bimbingan
-                    coach berpengalaman di TS. Anda memang harus punya komitmen belajar.
-                  </p>
-                </div>
+                    Manfaatkan kesempatan magang ini untuk mengenal dunia kerja digital, didampingi coach berpengalaman
+                    dari TalentSource. Kami mencari individu dengan komitmen tinggi untuk belajar dan berkembang.
+                  </p>                </div>
                 <form className="space-y-8">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-muted-foreground">

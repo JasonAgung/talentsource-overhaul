@@ -25,37 +25,51 @@ export default function LiveStreamPage() {
 
           <section className="py-16 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-              <article className="prose dark:prose-invert max-w-none mx-auto mt-12 text-muted-foreground">
-                <p>
-                  Livestream consultation is our unique service that adopts the consultation session with independent
-                  professional like doctor, architect, lawyer and others.
-                </p>
-                <p>The major differences of our livestream consultation with those consultation model are:</p>
-                <ul>
-                  <li>Appointment is made a lot easier and interactive</li>
-                  <li>Our session is more structured with clear points</li>
-                  <li>Will be limited to two hours session segment</li>
-                  <li>Can be team of TS consultants on max 15 participants</li>
-                  <li>Dedicated sessions dealing your own issues and concerns only</li>
-                </ul>
-                <p>TS memberikan layanan live stream consultation service untuk tiga topik berikut:</p>
-                <ul>
-                  <li>Process automation / RPA</li>
-                  <li>Data analytics, Machine Learning dan AI</li>
-                  <li>Corporate digital transformation</li>
-                </ul>
-                <p>
-                  Consultation service ini disesuaikan dengan kebutuhan peminat tergantung posisinya saat ini pada
-                  masing masing ketiga topik diatas:
-                </p>
-                <ul>
-                  <li>Sedang akan memutuskan untuk menerapkan di organisasi / korporasi</li>
-                  <li>Saat tahap implementasi</li>
-                  <li>Sudah cukup advanced dalam implementasi</li>
-                </ul>
-                <p>Program ini Sebagian juga untuk mendukung free internship program TS.</p>
+              <article className="prose dark:prose-invert max-w-none mx-auto mt-12 text-muted-foreground space-y-8">
+                <div>
+                  <h3 className="text-foreground font-semibold text-xl mb-2">What is Live Stream Consultation?</h3>
+                  <p>
+                    Our Live Stream Consultation is a unique service that adapts the traditional consultation model
+                    (like those with doctors, architects, or lawyers) to a dynamic digital format.
+                  </p>
+                </div>
+              
+                <div>
+                  <h3 className="text-foreground font-semibold text-xl mb-2">Key Differentiators</h3>
+                  <p>Compared to conventional consultation models, our live stream sessions offer:</p>
+                  <ul className="list-disc list-inside ml-4 space-y-1">
+                    <li>Easier and more interactive appointment scheduling.</li>
+                    <li>Structured sessions with clear objectives and outcomes.</li>
+                    <li>Each session is limited to a two-hour segment for focused discussion.</li>
+                    <li>Engage with a team of TalentSource consultants, accommodating up to 15 participants.</li>
+                    <li>Dedicated sessions tailored to address your specific issues and concerns.</li>
+                  </ul>
+                </div>
+              
+                <div>
+                  <h3 className="text-foreground font-semibold text-xl mb-2">Consultation Topics</h3>
+                  <p>TalentSource provides live stream consultation services across three key topics:</p>
+                  <ul className="list-disc list-inside ml-4 space-y-1">
+                    <li>Process Automation / Robotic Process Automation (RPA)</li>
+                    <li>Data Analytics, Machine Learning, and Artificial Intelligence (AI)</li>
+                    <li>Corporate Digital Transformation</li>
+                  </ul>
+                </div>
+              
+                <div>
+                  <h3 className="text-foreground font-semibold text-xl mb-2">Tailored to Your Needs</h3>
+                  <p>Our consultation service is customized based on your current stage and needs for each topic:</p>
+                  <ul className="list-disc list-inside ml-4 space-y-1">
+                    <li>For those deciding whether to implement in their organization/corporation.</li>
+                    <li>For those currently in the implementation phase.</li>
+                    <li>For those already advanced in implementation and seeking further optimization.</li>
+                  </ul>
+                </div>
+              
+                <div>
+                  <p>This program also partially supports the TalentSource Free Internship Program.</p>
+                </div>
               </article>
-
               <div className="mt-16 text-center">
                 <h3 className="text-2xl font-bold text-foreground mb-8">Download Our Flyers</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
