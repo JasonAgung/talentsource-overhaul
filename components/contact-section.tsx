@@ -20,7 +20,6 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
     console.log("Form submitted:", formData)
   }
 
@@ -35,7 +34,6 @@ export function ContactSection() {
     <section id="contact" className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-balance">
               Let's Discuss Your Project
@@ -47,8 +45,8 @@ export function ContactSection() {
 
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Live Chat Support</h3>
@@ -57,8 +55,8 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Phone Consultation</h3>
@@ -67,8 +65,8 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Email Support</h3>
@@ -77,8 +75,8 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-5 w-5 text-accent" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Global Presence</h3>
@@ -88,8 +86,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <Card className="border-0 shadow-lg">
+          <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-2xl text-foreground">Start Your Journey</CardTitle>
             </CardHeader>
@@ -103,6 +100,7 @@ export function ContactSection() {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
+                      className="bg-input border-border text-foreground"
                     />
                   </div>
                   <div>
@@ -112,6 +110,7 @@ export function ContactSection() {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
+                      className="bg-input border-border text-foreground"
                     />
                   </div>
                 </div>
@@ -123,6 +122,7 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  className="bg-input border-border text-foreground"
                 />
 
                 <Input
@@ -130,6 +130,7 @@ export function ContactSection() {
                   placeholder="Organization"
                   value={formData.organization}
                   onChange={handleChange}
+                  className="bg-input border-border text-foreground"
                 />
 
                 <Textarea
@@ -139,9 +140,10 @@ export function ContactSection() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  className="bg-input border-border text-foreground"
                 />
 
-                <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button type="submit" size="lg" className="w-full">
                   Send Message
                 </Button>
               </form>

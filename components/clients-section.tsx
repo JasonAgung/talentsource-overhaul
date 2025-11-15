@@ -31,12 +31,15 @@ export function ClientsSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
           {clients.map((client, index) => (
-            <Card key={index} className="border-0 shadow-none hover:shadow-md transition-shadow duration-300">
+            <Card
+              key={index}
+              className="bg-card border-border hover:bg-accent transition-colors duration-300"
+            >
               <CardContent className="p-6 flex items-center justify-center">
                 <img
                   src={client.logo || "/placeholder.svg"}
                   alt={`${client.name} logo`}
-                  className="max-w-full h-12 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                  className="max-w-full h-12 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </CardContent>
             </Card>
@@ -44,7 +47,7 @@ export function ClientsSection() {
         </div>
 
         <div className="mt-16 text-center">
-          <Card className="bg-accent/5 border-accent/20">
+          <Card className="bg-card border-border">
             <CardContent className="p-8">
               <h3 className="text-xl font-semibold text-foreground mb-4">Recent Case Studies</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">

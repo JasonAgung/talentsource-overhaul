@@ -3,6 +3,18 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Play, Zap, Cpu, Network } from "lucide-react"
+import RotatingText from "./RotatingText"
+
+const ArrowRight = () => (
+  <svg
+    className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+)
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -13,6 +25,8 @@ export function HeroSection() {
       title: "We help companies build new Learning & Development strategies for the digital economy",
       subtitle: "Adopting Talent Re- & Upskilling Initiatives with deep understanding of Indonesian companies",
       icon: <Zap className="h-8 w-8" />,
+      badge: "Future Ready",
+      rotatingTexts: ["Growth", "Innovation", "Efficiency", "Success", "Performance"]
     },
     {
       image: "/placeholder-bknhi.png",
@@ -20,6 +34,8 @@ export function HeroSection() {
       subtitle:
         "Not just consulting — offering integrated talent development, consulting services, and hands-on projects",
       icon: <Cpu className="h-8 w-8" />,
+      badge: "Talent Development",
+      rotatingTexts: ["Skills", "Talent", "Careers", "Opportunities", "Potential"]
     },
     {
       image: "/professional-development-workshop.png",
@@ -27,6 +43,8 @@ export function HeroSection() {
       subtitle:
         "24/7 digital coaching, mentoring, and collaboration with balanced mix of idealism and business discipline",
       icon: <Network className="h-8 w-8" />,
+      badge: "Customized Programs",
+      rotatingTexts: ["Results", "Impact", "Value", "Growth", "ROI"]
     },
   ]
 
@@ -46,58 +64,69 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative h-screen min-h-[800px] overflow-hidden cyber-grid">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
       {/* Background Image with Futuristic Overlay */}
       <div className="absolute inset-0">
         <img
           src={slides[currentSlide].image || "/placeholder.svg"}
           alt="Hero background"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-10 transition-opacity duration-1000"
+          key={slides[currentSlide].image}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-card/60" />
-        <div className="absolute inset-0 hologram-effect opacity-20" />
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 float-animation">
-        <div className="w-4 h-4 bg-accent rounded-full glow-effect opacity-60"></div>
-      </div>
-      <div className="absolute top-40 right-20 float-animation" style={{ animationDelay: "2s" }}>
-        <div className="w-6 h-6 bg-primary rounded-full glow-effect opacity-40"></div>
-      </div>
-      <div className="absolute bottom-40 left-20 float-animation" style={{ animationDelay: "4s" }}>
-        <div className="w-3 h-3 bg-accent rounded-full glow-effect opacity-50"></div>
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-        <div className="max-w-5xl">
-          <div className="flex items-center mb-6">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-accent glow-effect mr-4">
-              {slides[currentSlide].icon}
-            </div>
-            <span className="text-accent font-mono text-sm tracking-wider uppercase">Future Ready</span>
+      <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in-hero">
+        <div className="max-w-4xl">
+          {/* Badge */}
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-border text-foreground text-sm font-medium mb-8 mt-12 animate-fade-in-badge">
+            <span className="w-2 h-2 bg-foreground/60 rounded-full mr-2 animate-pulse"></span>
+            {slides[currentSlide].badge}
           </div>
 
-          <h1 className="text-4xl md:text-7xl font-bold text-foreground mb-8 leading-tight text-balance">
-            <span className="shimmer-text">{slides[currentSlide].title}</span>
+          {/* Main Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance mb-6 animate-fade-in-heading">
+            <span className="text-foreground">{slides[currentSlide].title}</span>
+            <br />
+            <span className="inline-flex items-center justify-center flex-wrap gap-2 mt-4 sm:mt-6 md:mt-8">
+              <RotatingText
+                texts={slides[currentSlide].rotatingTexts}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-foreground text-background overflow-hidden py-1 sm:py-1 md:py-2 justify-center rounded-lg shadow-lg"
+                staggerFrom={"last"}
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-1 sm:pb-1 md:pb-1"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
+            </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed text-pretty max-w-4xl">
+          {/* Subheading */}
+          <p className="text-base sm:text-xl md:text-2xl text-foreground text-balance max-w-sm sm:max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
             {slides[currentSlide].subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6">
-            <Button size="lg" className="btn-futuristic glow-effect text-lg px-8 py-4 h-auto">
-              <Zap className="mr-2 h-5 w-5" />
-              Explore Our Services
-            </Button>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-16 animate-fade-in-buttons">
             <Button
               size="lg"
-              variant="outline"
-              className="neon-border glass-effect text-lg px-8 py-4 h-auto hover:bg-accent/10 bg-transparent"
+              className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-accent hover:scale-105 hover:shadow-lg group cursor-pointer relative overflow-hidden"
             >
-              <Play className="mr-2 h-5 w-5" />
+              Explore Our Services
+              <ArrowRight />
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full px-8 py-4 text-lg font-medium border-border hover:bg-accent transition-all duration-200 hover:scale-105 group bg-transparent cursor-pointer"
+            >
+              <Play />
               Free Consultation
             </Button>
           </div>
@@ -107,13 +136,13 @@ export function HeroSection() {
       {/* Navigation */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full glass-effect neon-border hover:bg-accent/10 transition-all duration-300"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-foreground/10 backdrop-blur-md border border-border hover:bg-foreground/20 transition-all duration-300"
       >
         <ChevronLeft className="h-6 w-6 text-foreground" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full glass-effect neon-border hover:bg-accent/10 transition-all duration-300"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-foreground/10 backdrop-blur-md border border-border hover:bg-foreground/20 transition-all duration-300"
       >
         <ChevronRight className="h-6 w-6 text-foreground" />
       </button>
@@ -124,21 +153,13 @@ export function HeroSection() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "bg-accent glow-effect scale-125"
-                : "bg-muted-foreground/50 hover:bg-muted-foreground"
+                ? "bg-foreground scale-125"
+                : "bg-foreground/50 hover:bg-foreground"
             }`}
           />
         ))}
-      </div>
-
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-muted/20">
-        <div
-          className="h-full bg-gradient-to-r from-primary to-accent glow-effect transition-all duration-300"
-          style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-        />
       </div>
     </section>
   )

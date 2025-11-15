@@ -25,7 +25,7 @@ export function ValueProposition() {
   ]
 
   return (
-    <section id="about" className="py-24 bg-muted/30">
+    <section id="about" className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Value Proposition</h2>
@@ -36,21 +36,19 @@ export function ValueProposition() {
 
         <div className="max-w-4xl mx-auto">
           <div className="space-y-10">
-          {propositions.map((prop, index) => {
-            const Icon = prop.icon
-            return (
-              <div key={index} className="flex flex-col sm:flex-row items-start gap-6">
-                <div className="flex-shrink-0 w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center">
-                  <Icon className="h-7 w-7 text-accent" />
+            {propositions.map((prop, index) => {
+              const Icon = prop.icon
+              return (
+                <div key={index} className="flex flex-col sm:flex-row items-start gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <p className="text-lg text-muted-foreground leading-relaxed text-pretty">{prop.text}</p>
                 </div>
-                <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-                  {prop.text}
-                </p>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   )
