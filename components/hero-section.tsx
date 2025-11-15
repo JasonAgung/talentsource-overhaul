@@ -22,7 +22,7 @@ export function HeroSection() {
   const slides = [
     {
       image: "/modern-educational-campus-aerial-view.jpg",
-      title: "We help companies build new Learning & Development strategies for the digital economy",
+      title: "We help companies build new Learning & Development strategies",
       subtitle: "Adopting Talent Re- & Upskilling Initiatives with deep understanding of Indonesian companies",
       icon: <Zap className="h-8 w-8" />,
       badge: "Future Ready",
