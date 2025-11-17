@@ -32,7 +32,7 @@ export default function InternshipPage() {
                 <div className="space-y-6">
                   <p>
                     TalentSource offers internship and on-the-job experience programs designed for students and young
-                    professionals. This program serves as an ideal 'on-boarding' experience, preparing participants
+                    professionals. This program serves as an ideal &apos;on-boarding&apos; experience, preparing participants
                     for real-world career challenges.
                   </p>
                   <p>
@@ -44,7 +44,7 @@ export default function InternshipPage() {
                   <div>
                     <h3 className="text-foreground font-semibold">Grow Through Us Program</h3>
                     <p>
-                      Our 'Grow Through Us' program offers opportunities across various professional areas, from
+                      Our &apos;Grow Through Us&apos; program offers opportunities across various professional areas, from
                       specific skills to managerial roles, all focused on digital knowledge and capabilities. These
                       include:
                     </p>
@@ -69,8 +69,7 @@ export default function InternshipPage() {
                     from various industries, including those from global companies in Indonesia, to provide guidance
                     and support, especially if there is a high volume of participant interest.
                   </p>
-                  </div>
-                  <div className="mt-12 pt-8 border-t border-border">
+                </div>                  <div className="mt-12 pt-8 border-t border-border">
                     <h2 className="text-2xl font-bold text-foreground text-center mb-8">Why Join Our Internship Program?</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="bg-card p-6 rounded-lg shadow-md border border-border">
@@ -270,9 +269,8 @@ export default function InternshipPage() {
                 </form>
 
                 <p className="mt-12 text-lg font-semibold text-foreground italic text-center">
-                  "Let TalentSource be your reliable support to get into the real journey of your life!"
-                </p>
-              </div>
+                  &quot;Let TalentSource be your reliable support to get into the real journey of your life!&quot;
+                </p>              </div>
             </div>
           </section>
         </div>
