@@ -115,7 +115,6 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-transparent">
       <main className="relative">
-        <div className="absolute inset-0 bg-white pointer-events-none" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
         
@@ -225,7 +224,7 @@ export default function ServicesPage() {
 
                         {/* Right Visual */}
                         <div className="hidden lg:flex items-center justify-center">
-                          <div className={`w-full h-64 rounded-lg bg-gradient-to-br ${service.color} opacity-20 group-hover:opacity-30 transition-all duration-300 flex items-center justify-center text-4xl`}>
+                          <div className={`w-full h-64 rounded-lg bg-gradient-to-br ${service.color} opacity-60 group-hover:opacity-80 transition-all duration-300 flex items-center justify-center text-4xl`}>
                             {service.id === 1 && "⚙️"}
                             {service.id === 2 && "📊"}
                             {service.id === 3 && "📱"}
@@ -267,9 +266,8 @@ export default function ServicesPage() {
                   className="relative"
                 >
                   <Card className="p-6 h-full text-center border-primary/10 bg-card/50 backdrop-blur">
-                    <div className="text-4xl mb-4">{item.icon}</div>
-                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent text-white font-bold text-sm mb-4">
-                      {index + 1}
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      <div className="text-4xl">{item.icon}</div>
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-3">{item.step}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>

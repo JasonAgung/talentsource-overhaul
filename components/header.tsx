@@ -156,9 +156,6 @@ export function Header() {
 
               {/* Right Actions */}
               <div className="hidden md:flex items-center space-x-3">
-                <Button variant="ghost" size="sm" className="hover:bg-primary/10 text-foreground hover:text-primary transition-colors duration-300">
-                  <Search className="h-4 w-4" />
-                </Button>
                 <ThemeToggle />
               </div>
 
