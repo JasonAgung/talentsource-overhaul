@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Play, Zap, Cpu, Network, ArrowRight } from 'lucide-react'
 import RotatingText from "./RotatingText"
@@ -29,7 +30,7 @@ export function HeroSection() {
       rotatingTexts: ["Growth", "Innovation", "Efficiency", "Success", "Performance"]
     },
     {
-      image: "/placeholder-bknhi.png",
+      image: "/aerial-view-ts.jpg",
       title: "Addressing Indonesia's Skilled Talent Gap",
       subtitle: "Integrated talent development, strategic consulting, and hands-on implementation for real-world impact",
       icon: <Cpu className="h-8 w-8" />,
@@ -62,13 +63,13 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative h-screen flex items-center justify-center px-4 py-8 overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center px-4 py-8 overflow-hidden group">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background to-blue-100 dark:from-blue-950/30 dark:via-background dark:to-blue-900/20" />
         <img
           src={slides[currentSlide].image || "/placeholder.svg"}
           alt="Hero background"
-          className="w-full h-full object-cover opacity-5 transition-opacity duration-1000"
+          className="w-full h-full object-cover opacity-25 transition-opacity duration-1000"
           key={slides[currentSlide].image}
         />
         {/* Decorative gradient orbs */}
@@ -109,36 +110,40 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-2 animate-fade-in-buttons">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer relative overflow-hidden border-0"
-            >
-              Explore Our Services
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link href="/services">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer relative overflow-hidden border-0"
+              >
+                Explore Our Services
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full px-8 py-6 text-base font-semibold border-primary/30 hover:bg-primary/5 hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 group bg-white dark:bg-background cursor-pointer"
-            >
-              <Play className="h-4 w-4" />
-              Free Consultation
-            </Button>
+            <Link href="/webinar-live/live-stream-consultation">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-full px-8 py-6 text-base font-semibold border-primary/30 hover:bg-primary/5 hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 group bg-white dark:bg-background cursor-pointer"
+              >
+                <Play className="h-4 w-4" />
+                Free Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
 
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-md border border-primary/20 hover:bg-white dark:hover:bg-background/95 hover:border-primary/40 transition-all duration-300 hover:scale-110 hover:shadow-lg group"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-md border border-primary/20 hover:bg-white dark:hover:bg-background/95 hover:hover:border-primary/40 transition-all duration-300 hover:scale-110 hover:shadow-lg opacity-0 group-hover:opacity-100"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-md border border-primary/20 hover:bg-white dark:hover:bg-background/95 hover:border-primary/40 transition-all duration-300 hover:scale-110 hover:shadow-lg group"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-md border border-primary/20 hover:bg-white dark:hover:bg-background/95 hover:hover:border-primary/40 transition-all duration-300 hover:scale-110 hover:shadow-lg opacity-0 group-hover:opacity-100"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />

@@ -113,14 +113,14 @@ const processSteps = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-transparent">
       <main className="relative">
+        <div className="absolute inset-0 bg-white pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        
         {/* Hero Section */}
-        <section className="relative py-24 lg:py-32 px-4 overflow-hidden mt-24">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-28 px-4">
           <div className="max-w-4xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -147,14 +147,15 @@ export default function ServicesPage() {
                   className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold hover:shadow-lg hover:-translate-y-1"
                   asChild
                 >
-                  <Link href="/contact">Schedule a Consultation</Link>
+                  <Link href="/webinar-live/live-stream-consultation">Schedule a Consultation</Link>
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
                   className="rounded-full px-8 py-6 text-base font-semibold"
+                  asChild
                 >
-                  Learn More
+                  <a href="#core-services">Learn More</a>
                 </Button>
               </div>
             </motion.div>
@@ -162,7 +163,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Main Services Section */}
-        <section className="relative py-20 lg:py-28 px-4 overflow-hidden">
+        <section id="core-services" className="relative py-20 lg:py-28 px-4">
           <div className="max-w-7xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -242,7 +243,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Process Section */}
-        <section className="relative py-20 lg:py-28 px-4 overflow-hidden bg-gradient-to-b from-transparent via-primary/3 to-transparent">
+        <section className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-transparent via-primary/3 to-transparent">
           <div className="max-w-5xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -272,8 +273,7 @@ export default function ServicesPage() {
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-3">{item.step}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </Card>
-                  {index < processSteps.length - 1 && (
+                  </Card>                  {index < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-1/3 -right-3 w-6 h-1 bg-gradient-to-r from-primary to-accent" />
                   )}
                 </motion.div>
@@ -283,7 +283,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative py-20 lg:py-28 px-4 overflow-hidden">
+        <section className="relative py-20 lg:py-28 px-4">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
