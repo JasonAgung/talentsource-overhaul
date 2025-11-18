@@ -187,7 +187,7 @@ export function Header() {
         <div className="md:hidden relative">
           {/* Backdrop */}
           <div
-            className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-all duration-300 ${
+            className={`fixed inset-0 transition-all duration-300 ${
               isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
             onClick={() => setIsOpen(false)}
@@ -207,12 +207,7 @@ export function Header() {
                     <div key={item.name}>
                       <button
                         onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                        className={`w-full flex justify-between items-center text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
-                          isOpen ? "animate-mobile-menu-item" : ""
-                        }`}
-                        style={{
-                          animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-                        }}
+                        className={`w-full flex justify-between items-center text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer`}
                       >
                         <span>{item.name}</span>
                         <ChevronDown
@@ -240,12 +235,7 @@ export function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
-                        isOpen ? "animate-mobile-menu-item" : ""
-                      }`}
-                      style={{
-                        animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-                      }}
+                      className={`text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer`}
                       onClick={() => {
                         if (item.href.startsWith("#")) {
                           scrollToSection(item.href)
