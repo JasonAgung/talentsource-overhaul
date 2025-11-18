@@ -9,6 +9,7 @@ import { Dancing_Script, Caveat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { DynamicBackground } from "@/components/dynamic-background"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const dancingScript = Dancing_Script({
@@ -46,6 +47,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <DynamicBackground />
           <Suspense fallback={null}>
             <NavigationTransition />
             <Header />
