@@ -91,21 +91,22 @@ export function DownloadCaseStudyModal({ isOpen, onClose, onSubmit, caseStudyTit
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md mx-4"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md"
           >
-            <div className="bg-card border border-primary/20 rounded-2xl shadow-2xl p-8 relative">
-              {/* Close Button */}
-              <button
-                onClick={onClose}
-                className="absolute top-6 right-6 p-2 hover:bg-primary/10 rounded-lg transition-colors duration-200"
-              >
-                <X className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-              </button>
-
-              {/* Header */}
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold text-foreground mb-2">Fill the form to download the Case Study</h2>
-                <p className="text-sm text-muted-foreground">{caseStudyTitle}</p>
+            <div className="bg-card border border-primary/20 rounded-2xl shadow-2xl p-8 mx-4">
+              <div className="flex items-start justify-between">
+                {/* Header */}
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold text-foreground mb-2">Fill the form to download the Case Study</h2>
+                  <p className="text-sm text-muted-foreground">{caseStudyTitle}</p>
+                </div>
+                {/* Close Button */}
+                <button
+                  onClick={onClose}
+                  className="p-2 hover:bg-primary/10 rounded-lg transition-colors duration-200"
+                >
+                  <X className="h-5 w-5 text-muted-foreground hover:text-foreground" />
+                </button>
               </div>
 
               {/* Form */}
