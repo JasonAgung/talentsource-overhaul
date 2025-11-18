@@ -1,131 +1,154 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
-import Aurora from "./Aurora"
 import { Button } from "./ui/button"
+import { Card } from "./ui/card"
+import { Download, ArrowRight } from 'lucide-react'
+import { DownloadCaseStudyModal } from "./download-case-study-modal"
+import { motion } from "framer-motion"
 
 const caseStudiesData = [
   {
-    title: "Case Study: Fraud Detection System - Mobile & Internet Banking",
-    content: [
-      { type: "paragraph", text: "Menggunakan metode gabungan dari Rule Based dan Unsupervised Learning" },
-      {
-        type: "list",
-        items: ["Unsupervised Learning", "Customer spending behavior", "Customer profiling analysis", "Geographical locations"],
-      },
-      { type: "paragraph", text: "Download study case to read more..." },
-    ],
-    downloadLink: "/path/to/fraud-detection-case-study.pdf",
+    title: "Fraud Detection System - Mobile & Internet Banking",
+    excerpt: "Menggunakan metode gabungan dari Rule Based dan Unsupervised Learning dengan customer profiling analysis dan geographical locations",
+    methods: ["Unsupervised Learning", "Customer spending behavior", "Customer profiling analysis", "Geographical locations"],
+    category: "Machine Learning",
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Data analytics: Students' social economic grouping",
-    content: [
-      {
-        type: "paragraph",
-        text: "During covid19 pandemic, a school plan to allocate support to students that really need it and at the same time skip the physical on-site survey and interview.",
-      },
-      { type: "paragraph", text: "Avoid misallocation by analyzing parents/family data (school)." },
-    ],
-    downloadLink: "/path/to/student-grouping-case-study.pdf",
+    title: "Data Analytics: Students' Social Economic Grouping",
+    excerpt: "During covid19 pandemic, a school planned to allocate support to students that really need it and at the same time skip physical on-site survey and interview.",
+    methods: ["Family data analysis", "Economic grouping", "Allocation strategy", "Social profiling"],
+    category: "Data Analytics",
+    color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Data analytics: Finding the right strategy to increase fee-based income of cellular 'pulsa' retailer",
-    content: [
-      {
-        type: "paragraph",
-        text: "A bank which is also offering cellular minutes/data quota top-up retail intend to find an effective strategy and program which can increase the purchase volume of customers by analyzing the customer behavior and polite data (bank).",
-      },
-    ],
-    downloadLink: "/path/to/pulsa-retailer-case-study.pdf",
+    title: "Data Analytics: Cellular Pulsa Retailer Strategy",
+    excerpt: "A bank offering cellular minutes/data quota top-up retail analyzed customer behavior to increase purchase volume and revenue.",
+    methods: ["Customer behavior analysis", "Revenue optimization", "Purchase pattern analysis", "Strategic planning"],
+    category: "Data Analytics",
+    color: "from-green-500 to-emerald-500",
   },
   {
-    title: "Machine Learning : Insurance claim checking automation",
-    content: [
-      {
-        type: "paragraph",
-        text: "Claim checking is tedious manual task which can be automated using machine learning model to reduce checking manual process cost more than 50% and maintaining the total lost to very minimum level. (insurance company).",
-      },
-      { type: "paragraph", text: "Download study case to read more..." },
-    ],
-    downloadLink: "/path/to/insurance-claim-case-study.pdf",
+    title: "Machine Learning: Insurance Claim Checking Automation",
+    excerpt: "Automated claim checking using machine learning to reduce manual process cost by more than 50% while maintaining minimal loss levels.",
+    methods: ["ML automation", "Cost reduction", "Quality assurance", "Loss minimization"],
+    category: "Automation",
+    color: "from-orange-500 to-red-500",
   },
   {
-    title: "Case Study Work Process Streamlining & Automation",
-    content: [
-      {
-        type: "paragraph",
-        text: "A study case of reviewing business processes, perform BPI/BPR and automate processes in leading financial industry...",
-      },
-      { type: "paragraph", text: "Download study case to read more..." },
-    ],
-    downloadLink: "/path/to/process-streamlining-case-study.pdf",
+    title: "Work Process Streamlining & Automation (RPA)",
+    excerpt: "A comprehensive study case of reviewing business processes, performing BPI/BPR and automating processes in leading financial industry.",
+    methods: ["Process review", "BPI/BPR", "RPA implementation", "Financial industry"],
+    category: "RPA",
+    color: "from-indigo-500 to-violet-500",
   },
   {
-    title: "Application User-Friendliness and Smartness (Knowledge Management Function)",
-    content: [
-      {
-        type: "paragraph",
-        text: "This case is about internal essential application used by the call center agents and involves a knowledge management system.",
-      },
-      { type: "paragraph", text: "Download study case to read more..." },
-    ],
-    downloadLink: "/path/to/knowledge-management-case-study.pdf",
+    title: "Application User-Friendliness and Knowledge Management",
+    excerpt: "Internal essential application redesign for call center agents with integrated knowledge management system for improved efficiency.",
+    methods: ["UX improvement", "Knowledge management", "Agent efficiency", "System integration"],
+    category: "Application Development",
+    color: "from-cyan-500 to-blue-500",
   },
 ]
 
 export default function CaseStudies() {
+  const [selectedStudy, setSelectedStudy] = useState<string | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleDownload = (title: string) => {
+    setSelectedStudy(title)
+    setIsModalOpen(true)
+  }
+
+  const handleModalSubmit = (formData: any) => {
+    // Here you would typically send the form data to your backend
+    console.log("Download form submitted:", formData, "for case study:", selectedStudy)
+    // Trigger actual download after form submission
+  }
+
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      <main className="min-h-screen relative overflow-hidden">
-        <div className="fixed inset-0 w-full h-full">
-          <Aurora colorStops={["#475569", "#64748b", "#475569"]} amplitude={1.2} blend={0.6} speed={0.8} />
-        </div>
-
-        <div className="relative z-10">
-          <section className="min-h-[60vh] flex items-center justify-center px-4 pt-16 md:pt-24 pb-12 relative">
-            <div className="max-w-4xl mx-auto text-center relative z-10">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 mt-8 md:mt-12 animate-fade-in-badge">
-                <span className="w-2 h-2 bg-foreground/60 rounded-full mr-2 animate-pulse"></span>
-                Our Work
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground">Case Studies</h1>
+    <>
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 mt-0"
+          >
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8">
+              <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+              Real Success Stories
             </div>
-          </section>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 text-balance">Our Case Studies</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Discover how we've helped organizations achieve digital transformation and business growth through innovative solutions</p>
+          </motion.div>
 
-          <section className="py-16 md:py-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {caseStudiesData.map((study, index) => (
-                  <div
-                    key={index}
-                    className="bg-card border border-border rounded-lg p-6 flex flex-col shadow-sm hover:shadow-lg transition-shadow"
-                  >
-                    <h3 className="text-xl font-bold text-foreground mb-4">{study.title}</h3>
-                    <div className="flex-grow text-muted-foreground space-y-3 text-sm">
-                      {study.content.map((block, blockIndex) => {
-                        if (block.type === "paragraph") {
-                          return <p key={blockIndex}>{block.text}</p>
-                        }
-                        if (block.type === "list") {
-                          return (
-                            <ul key={blockIndex} className="list-disc list-inside space-y-1 pl-2">
-                              {block.items?.map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}
-                            </ul>
-                          )
-                        }
-                        return null
-                      })}
-                    </div>
-                    <div className="mt-6">
-                      <Link href={study.downloadLink}>
-                        <Button className="w-full">Download Case Study</Button>
-                      </Link>
-                    </div>
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {caseStudiesData.map((study, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Card className="group h-full p-6 hover:shadow-xl transition-all duration-300 border-primary/10 hover:border-primary/30 bg-card/50 backdrop-blur overflow-hidden relative">
+                  {/* Gradient Background */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className={`absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br ${study.color} opacity-5 blur-3xl`} />
                   </div>
-                ))}
-              </div>
-            </div>
-          </section>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Category Tag */}
+                    <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 bg-gradient-to-r ${study.color} text-white opacity-90`}>
+                      {study.category}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">{study.title}</h3>
+                    <p className="text-muted-foreground mb-5 text-sm leading-relaxed">{study.excerpt}</p>
+
+                    {/* Methods */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {study.methods.slice(0, 3).map((method, i) => (
+                        <span key={i} className="text-xs bg-primary/10 text-primary px-2.5 py-1.5 rounded-full font-medium">
+                          {method}
+                        </span>
+                      ))}
+                      {study.methods.length > 3 && (
+                        <span className="text-xs bg-muted text-muted-foreground px-2.5 py-1.5 rounded-full font-medium">
+                          +{study.methods.length - 3} more
+                        </span>
+                      )}
+                    </div>
+
+                    <Button
+                      onClick={() => handleDownload(study.title)}
+                      className="w-full bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold gap-2 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download Case Study
+                    </Button>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Modal */}
+      <DownloadCaseStudyModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleModalSubmit}
+        caseStudyTitle={selectedStudy || ""}
+      />
+    </>
   )
 }

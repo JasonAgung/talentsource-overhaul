@@ -2,7 +2,7 @@
 import type React from "react"
 import type { ComponentProps, ReactNode } from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "lucide-react"
+import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, Mail, Phone, MapPin } from 'lucide-react'
 import Image from "next/image"
 
 interface FooterLink {
@@ -18,69 +18,90 @@ interface FooterSection {
 
 const footerLinks: FooterSection[] = [
   {
-    label: "Product",
+    label: "Services",
     links: [
-      { title: "Features", href: "/features" },
-      { title: "AI Team", href: "/ai-team" },
-      { title: "ROI Calculator", href: "/roi-calculator" },
-      { title: "Integration", href: "/integration" },
+      { title: "Talent Development", href: "/services" },
+      { title: "Executive Coaching", href: "/services" },
+      { title: "Organizational Consulting", href: "/services" },
+      { title: "Digital Skills Training", href: "/services" },
     ],
   },
   {
     label: "Company",
     links: [
       { title: "About Us", href: "/about" },
-      { title: "Contact", href: "/contact" },
-      { title: "Privacy Policy", href: "/privacy" },
-      { title: "Terms of Service", href: "/terms" },
+      { title: "Case Studies", href: "/case-studies" },
+      { title: "Blog & Resources", href: "/blog" },
+      { title: "Careers", href: "/careers" },
     ],
   },
   {
     label: "Resources",
     links: [
-      { title: "Blog", href: "/blog" },
-      { title: "Case Studies", href: "/case-studies" },
+      { title: "Free Webinars", href: "/webinars" },
       { title: "Documentation", href: "/docs" },
-      { title: "Support", href: "/support" },
+      { title: "Free Internship", href: "/free-internship" },
+      { title: "Contact Support", href: "/support" },
     ],
   },
   {
-    label: "Social Links",
+    label: "Follow Us",
     links: [
-      { title: "Facebook", href: "#", icon: FacebookIcon },
-      { title: "Instagram", href: "#", icon: InstagramIcon },
-      { title: "Youtube", href: "#", icon: YoutubeIcon },
       { title: "LinkedIn", href: "#", icon: LinkedinIcon },
+      { title: "Instagram", href: "#", icon: InstagramIcon },
+      { title: "Facebook", href: "#", icon: FacebookIcon },
+      { title: "YouTube", href: "#", icon: YoutubeIcon },
     ],
   },
 ]
 
 export function Footer() {
   return (
-    <footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
-      <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
+    <footer className="relative w-full bg-background border-t border-primary/10 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/2 to-accent/2 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-        <AnimatedContainer className="space-y-4">
-          <Image src="/images/cliste-logo.png" alt="Cliste Logo" width={64} height={64} className="size-16" />
-          <div className="text-muted-foreground mt-8 text-sm md:mt-0 md:block hidden">
-            <p>© {new Date().getFullYear()} Cliste. All rights reserved.</p>
-          </div>
-        </AnimatedContainer>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
+        {/* Main footer content */}
+        <div className="grid w-full gap-12 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
+          {/* Brand section */}
+          <AnimatedContainer className="lg:col-span-1 space-y-4">
+            <div className="flex items-center gap-2">
+              <img src="/ts-logo.png" alt="TalentSource Logo" className="h-10 w-auto" />
+              <div>
+                <p className="font-bold text-foreground">TalentSource</p>
+                <p className="text-xs text-muted-foreground">Talent Development</p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Transforming Indonesian organizations through innovative talent development and digital solutions for sustainable growth.
+            </p>
+            <div className="flex gap-3 pt-4">
+              <a href="tel:+62" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <Phone className="h-4 w-4" />
+              </a>
+              <a href="mailto:contact@talentsource.com" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <Mail className="h-4 w-4" />
+              </a>
+              <a href="#" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <MapPin className="h-4 w-4" />
+              </a>
+            </div>
+          </AnimatedContainer>
 
-        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+          {/* Links sections */}
           {footerLinks.map((section, index) => (
-            <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-              <div className="mb-10 md:mb-0">
-                <h3 className="text-xs">{section.label}</h3>
-                <ul className="text-muted-foreground mt-4 space-y-2 text-sm">
+            <AnimatedContainer key={section.label} delay={0.05 + index * 0.05}>
+              <div>
+                <h3 className="font-semibold text-foreground mb-4 text-sm uppercase tracking-wide">{section.label}</h3>
+                <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.title}>
                       <a
                         href={link.href}
-                        className="hover:text-foreground inline-flex items-center transition-all duration-300"
+                        className="text-muted-foreground hover:text-primary text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group"
                       >
-                        {link.icon && <link.icon className="me-1 size-4" />}
+                        {link.icon && <link.icon className="mr-2 h-4 w-4" />}
                         {link.title}
                       </a>
                     </li>
@@ -90,15 +111,28 @@ export function Footer() {
             </AnimatedContainer>
           ))}
         </div>
-      </div>
 
-      <div className="md:hidden mt-8 text-center space-y-2">
-        <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Cliste. All rights reserved.</p>
-        <p className="text-muted-foreground text-xs">Web Development by Humexa</p>
-      </div>
+        {/* Divider */}
+        <div className="my-12 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="hidden md:block mt-8 pt-6 border-t border-foreground/10 w-full">
-        <p className="text-muted-foreground text-xs text-center">Web Development by Humexa</p>
+        {/* Bottom section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <AnimatedContainer className="text-center md:text-left">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} TalentSource. All rights reserved. | Innovating Talent Development in Indonesia
+            </p>
+          </AnimatedContainer>
+
+          <AnimatedContainer className="flex items-center gap-6">
+            <a href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              Privacy Policy
+            </a>
+            <span className="w-px h-4 bg-primary/20" />
+            <a href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              Terms of Service
+            </a>
+          </AnimatedContainer>
+        </div>
       </div>
     </footer>
   )

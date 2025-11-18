@@ -1,83 +1,82 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.05 0 0);
-  --card: oklch(0.95 0 0);
-  --card-foreground: oklch(0.05 0 0);
-  --popover: oklch(0.95 0 0);
-  --popover-foreground: oklch(0.05 0 0);
-  --primary: oklch(0.7 0.15 142);
-  --primary-foreground: oklch(0.05 0 0);
-  --secondary: oklch(0.9 0 0);
-  --secondary-foreground: oklch(0.05 0 0);
-  --muted: oklch(0.9 0 0);
-  --muted-foreground: oklch(0.4 0 0);
-  --accent: oklch(0.9 0 0);
-  --accent-foreground: oklch(0.05 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.8 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.7 0.15 142);
-  --chart-1: oklch(0.7 0.15 142);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.5 0.07 227.392);
-  --chart-4: oklch(0.8 0.189 84.429);
-  --chart-5: oklch(0.75 0.188 70.08);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.95 0 0);
-  --sidebar-foreground: oklch(0.05 0 0);
-  --sidebar-primary: oklch(0.7 0.15 142);
-  --sidebar-primary-foreground: oklch(0.05 0 0);
-  --sidebar-accent: oklch(0.9 0 0);
-  --sidebar-accent-foreground: oklch(0.05 0 0);
-  --sidebar-border: oklch(0.8 0 0);
-  --sidebar-ring: oklch(0.7 0.15 142);
-}
-
-.dark {
-  --background: oklch(0.05 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.08 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.08 0 0);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.7 0.15 142);
-  --primary-foreground: oklch(0.05 0 0);
-  --secondary: oklch(0.15 0 0);
+  --background: oklch(0.98 0.001 220);
+  --foreground: oklch(0.15 0.05 230);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.05 230);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.05 230);
+  --primary: oklch(0.55 0.2 258);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.45 0.15 245);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.12 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.15 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.35 0.2 280);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.15 0 0);
-  --ring: oklch(0.7 0.15 142);
-  --chart-1: oklch(0.7 0.15 142);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.5 0.07 227.392);
-  --chart-4: oklch(0.8 0.189 84.429);
-  --chart-5: oklch(0.75 0.188 70.08);
-  --sidebar: oklch(0.08 0 0);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.7 0.15 142);
-  --sidebar-primary-foreground: oklch(0.05 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
+  --border: oklch(0.88 0.01 220);
+  --input: oklch(0.96 0 0);
+  --ring: oklch(0.55 0.2 258);
+  --chart-1: oklch(0.55 0.2 258);
+  --chart-2: oklch(0.45 0.15 245);
+  --chart-3: oklch(0.65 0.18 270);
+  --chart-4: oklch(0.35 0.2 280);
+  --chart-5: oklch(0.5 0.15 250);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.97 0 0);
+  --sidebar-foreground: oklch(0.15 0.05 230);
+  --sidebar-primary: oklch(0.55 0.2 258);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.35 0.2 280);
   --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.7 0.15 142);
+  --sidebar-border: oklch(0.88 0.01 220);
+  --sidebar-ring: oklch(0.55 0.2 258);
+}
+
+.dark {
+  /* Complete dark mode overhaul - all dark mode colors now properly defined */
+  --background: oklch(0.08 0.01 240);
+  --foreground: oklch(0.96 0.02 240);
+  --card: oklch(0.12 0.015 240);
+  --card-foreground: oklch(0.96 0.02 240);
+  --popover: oklch(0.12 0.015 240);
+  --popover-foreground: oklch(0.96 0.02 240);
+  --primary: oklch(0.70 0.26 258);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.62 0.22 245);
+  --secondary-foreground: oklch(0.05 0 0);
+  --muted: oklch(0.22 0.02 240);
+  --muted-foreground: oklch(0.78 0.02 240);
+  --accent: oklch(0.72 0.28 280);
+  --accent-foreground: oklch(0.05 0 0);
+  --destructive: oklch(0.65 0.27 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.20 0.02 240);
+  --input: oklch(0.15 0.015 240);
+  --ring: oklch(0.70 0.26 258);
+  --chart-1: oklch(0.70 0.26 258);
+  --chart-2: oklch(0.62 0.22 245);
+  --chart-3: oklch(0.78 0.24 270);
+  --chart-4: oklch(0.72 0.28 280);
+  --chart-5: oklch(0.68 0.22 250);
+  --sidebar: oklch(0.12 0.015 240);
+  --sidebar-foreground: oklch(0.96 0.02 240);
+  --sidebar-primary: oklch(0.70 0.26 258);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.72 0.28 280);
+  --sidebar-accent-foreground: oklch(0.05 0 0);
+  --sidebar-border: oklch(0.20 0.02 240);
+  --sidebar-ring: oklch(0.70 0.26 258);
 }
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-script: "Dancing Script", cursive;
-  --font-handwriting: "Caveat", cursive;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -129,44 +128,7 @@
   }
 }
 
-/* Adding slide-in animation utilities that were missing from tw-animate-css */
 @layer utilities {
-  .slide-in-from-top-2 {
-    animation: slide-in-from-top 0.2s ease-out;
-  }
-
-  .slide-in-from-bottom-2 {
-    animation: slide-in-from-bottom 0.2s ease-out;
-  }
-
-  .slide-in-from-left-2 {
-    animation: slide-in-from-left 0.2s ease-out;
-  }
-
-  .slide-in-from-right-2 {
-    animation: slide-in-from-right 0.2s ease-out;
-  }
-
-  .slide-in-from-bottom {
-    animation: slide-in-from-bottom 0.3s ease-out;
-  }
-
-  .slide-in-from-top-full {
-    animation: slide-in-from-top-full 0.3s ease-out;
-  }
-
-  .slide-in-from-bottom-full {
-    animation: slide-in-from-bottom-full 0.3s ease-out;
-  }
-
-  .slide-out-to-bottom {
-    animation: slide-out-to-bottom 0.2s ease-in;
-  }
-
-  .slide-out-to-right-full {
-    animation: slide-out-to-right-full 0.2s ease-in;
-  }
-
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -174,6 +136,21 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  .hover-lift {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .hover-lift:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .focus-ring-blue {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 dark:focus:ring-offset-background;
   }
 }
 
@@ -265,7 +242,6 @@
   }
 }
 
-/* Adding horizontal scroll animation for trust indicators */
 @keyframes scroll {
   0% {
     transform: translateX(100%);
@@ -279,7 +255,6 @@
   animation: scroll 30s linear infinite;
 }
 
-/* Adding slide-left animation for trust indicators */
 @keyframes slide-left {
   0% {
     transform: translateX(0);
@@ -306,7 +281,6 @@
   animation: slide-left-mobile 25s linear infinite;
 }
 
-/* Adding fade-in animations for page load */
 @keyframes fade-in-nav {
   0% {
     opacity: 0;
@@ -418,9 +392,6 @@
   opacity: 0;
 }
 
-/* Removed problem section CSS animations since we're using scroll-triggered animations */
-
-/* Adding mobile menu slide-in animation */
 @keyframes mobile-menu-item {
   0% {
     opacity: 0;
@@ -437,7 +408,6 @@
   opacity: 0;
 }
 
-/* Adding animations for interactive feature demonstrations */
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -449,13 +419,6 @@
   }
 }
 
-@keyframes animation-delay-75 {
-  0% {
-    animation-delay: 75ms;
-  }
-}
-
-/* Adding fade-in animation with delays for split-screen scenarios */
 @keyframes fade-in-scenario {
   0% {
     opacity: 0;
@@ -475,7 +438,6 @@
   animation-delay: 75ms;
 }
 
-/* Pulse animation variations for phone demo */
 @keyframes pulse-ring {
   0% {
     transform: scale(1);
@@ -491,7 +453,6 @@
   animation: pulse-ring 1.5s ease-out infinite;
 }
 
-/* Adding floating animation for background particles */
 @keyframes float {
   0%,
   100% {
@@ -516,7 +477,6 @@
   animation: float 4s ease-in-out infinite;
 }
 
-/* Adding fade-in-up animation for testimonials section */
 @keyframes fade-in-up {
   0% {
     opacity: 0;
@@ -532,7 +492,6 @@
   animation: fade-in-up 0.7s ease-out forwards;
 }
 
-/* Adding gradient animations for animated header component */
 @keyframes gradient-background-1 {
   0%,
   16.667%,
@@ -633,7 +592,6 @@
   animation: gradient-foreground-3 8s infinite;
 }
 
-/* Adding pulse-glow animation for the stat highlight */
 @keyframes pulse-glow {
   0%,
   100% {
@@ -650,7 +608,6 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Adding floating animations for AI Team section cards */
 @keyframes float-slow {
   0%,
   100% {
@@ -693,7 +650,6 @@
   animation: float-fast 4s ease-in-out infinite;
 }
 
-/* Adding delayed float animation for background orbs */
 @keyframes float-delayed {
   0%,
   100% {
@@ -719,7 +675,6 @@
   animation-delay: 1s;
 }
 
-/* Adding slow pulse animation for icon backgrounds */
 @keyframes pulse-slow {
   0%,
   100% {
@@ -734,7 +689,6 @@
   animation: pulse-slow 3s ease-in-out infinite;
 }
 
-/* Adding animations for AI Team section feature mockups */
 @keyframes slide-in-left {
   0% {
     opacity: 0;
@@ -794,7 +748,6 @@
   animation: bounce-subtle 2s ease-in-out infinite;
 }
 
-/* Animation delay utilities */
 .animation-delay-500 {
   animation-delay: 500ms;
 }
@@ -811,7 +764,6 @@
   animation-delay: 2000ms;
 }
 
-/* Adding animated gradient for "Never Sleeps" text */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -828,18 +780,6 @@
   animation: gradient 3s ease infinite;
 }
 
-/* Adding fade-in animation with delays for split-screen scenarios */
-@keyframes fade-in-scenario {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .delay-200 {
   animation-delay: 200ms;
 }
@@ -852,7 +792,6 @@
   animation-delay: 600ms;
 }
 
-/* Adding circle drawing animation for €200K+ stats */
 @keyframes drawCircle {
   0% {
     stroke-dashoffset: 600;
@@ -862,7 +801,6 @@
   }
 }
 
-/* Adding fade-in animation for WhatsApp and Voice sections */
 @keyframes fade-in-section {
   0% {
     opacity: 0;

@@ -1,122 +1,198 @@
 "use client"
 
+import { motion } from "framer-motion"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
-import Aurora from "@/components/Aurora"
+import { PageWrapper } from "@/components/page-wrapper"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Download, Mail, MessageCircle, CheckCircle } from 'lucide-react'
+
+const topics = [
+    { icon: "⚙️", title: "Process automation / RPA", description: "Optimize your business processes with automation" },
+    { icon: "📊", title: "Data analytics, Machine Learning & AI", description: "Transform data into strategic insights" },
+    { icon: "🚀", title: "Corporate digital transformation", description: "Lead your digital journey" },
+];
+
+const stages = [
+    { title: "Starting Phase", description: "Deciding to implement in the organization/corporation" },
+    { title: "Implementation Phase", description: "Currently in the implementation stage" },
+    { title: "Advanced Phase", description: "Already quite advanced in implementation" },
+];
+
+const flyers = [
+    {
+        imgSrc: "https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer1.png",
+        downloadLink: "/placeholder-flyer-en.pdf",
+        title: "English Version"
+    },
+    {
+        imgSrc: "https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer24.png",
+        downloadLink: "/placeholder-flyer-id.pdf",
+        title: "Indonesian Version"
+    }
+]
 
 export default function LiveStreamPage() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      <main className="min-h-screen relative overflow-hidden">
-        <div className="fixed inset-0 w-full h-full">
-          <Aurora colorStops={["#475569", "#64748b", "#475569"]} amplitude={1.2} blend={0.6} speed={0.8} />
+    <PageWrapper>
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12 mt-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8 animate-fade-in-badge transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+              Expert Consultation
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-foreground mb-4">
+                Live Stream Consultation
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                A unique professional consultation service that brings industry expertise directly to your organization.
+            </p>
         </div>
 
-        <div className="relative z-10">
-          <section className="min-h-[60vh] flex items-center justify-center px-4 pt-16 md:pt-24 pb-12 relative">
-            <div className="max-w-4xl mx-auto text-center relative z-10">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 mt-8 md:mt-12 animate-fade-in-badge">
-                <span className="w-2 h-2 bg-foreground/60 rounded-full mr-2 animate-pulse"></span>
-                Interactive Sessions
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground">Live Stream Consultation</h1>
-            </div>
-          </section>
+        {/* Overview */}
+        <motion.section
+            className="mb-16 p-8 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+        >
+            <h2 className="text-2xl font-bold text-foreground mb-4">What Sets Us Apart</h2>
+            <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Appointment booking made simple and interactive</span>
+                </li>
+                <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Highly structured sessions with clear objectives</span>
+                </li>
+                <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Limited to two-hour focused sessions</span>
+                </li>
+                <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Dedicated team of consultants for up to 15 participants</span>
+                </li>
+                <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>Fully customized to address your specific concerns</span>
+                </li>
+            </ul>
+        </motion.section>
 
-          <section className="py-16 md:py-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-              <article className="prose dark:prose-invert max-w-none mx-auto mt-12 text-muted-foreground space-y-8">
-                <div>
-                  <h3 className="text-foreground font-semibold text-xl mb-2">What is Live Stream Consultation?</h3>
-                  <p>
-                    Our Live Stream Consultation is a unique service that adapts the traditional consultation model
-                    (like those with doctors, architects, or lawyers) to a dynamic digital format.
-                  </p>
-                </div>
-              
-                <div>
-                  <h3 className="text-foreground font-semibold text-xl mb-2">Key Differentiators</h3>
-                  <p>Compared to conventional consultation models, our live stream sessions offer:</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Easier and more interactive appointment scheduling.</li>
-                    <li>Structured sessions with clear objectives and outcomes.</li>
-                    <li>Each session is limited to a two-hour segment for focused discussion.</li>
-                    <li>Engage with a team of TalentSource consultants, accommodating up to 15 participants.</li>
-                    <li>Dedicated sessions tailored to address your specific issues and concerns.</li>
-                  </ul>
-                </div>
-              
-                <div>
-                  <h3 className="text-foreground font-semibold text-xl mb-2">Consultation Topics</h3>
-                  <p>TalentSource provides live stream consultation services across three key topics:</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Process Automation / Robotic Process Automation (RPA)</li>
-                    <li>Data Analytics, Machine Learning, and Artificial Intelligence (AI)</li>
-                    <li>Corporate Digital Transformation</li>
-                  </ul>
-                </div>
-              
-                <div>
-                  <h3 className="text-foreground font-semibold text-xl mb-2">Tailored to Your Needs</h3>
-                  <p>Our consultation service is customized based on your current stage and needs for each topic:</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>For those deciding whether to implement in their organization/corporation.</li>
-                    <li>For those currently in the implementation phase.</li>
-                    <li>For those already advanced in implementation and seeking further optimization.</li>
-                  </ul>
-                </div>
-              
-                <div>
-                  <p>This program also partially supports the TalentSource Free Internship Program.</p>
-                </div>
-              </article>
-              <div className="mt-16 text-center">
-                <h3 className="text-2xl font-bold text-foreground mb-8">Download Our Flyers</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex flex-col items-center p-6 bg-card border border-border rounded-lg">
-                    <img src="https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer1.png" />
-                    <Button asChild className="w-full max-w-xs mt-4">
-                      <a href="/placeholder-flyer-en.pdf" download>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Flyer
-                      </a>
-                    </Button>
-                  </div>
-                  <div className="flex flex-col items-center p-6 bg-card border border-border rounded-lg">
-                    <img src="https://bandungtalentsource.com/wp-content/uploads/2022/01/flyer24.png" />
-                    <Button asChild className="w-full max-w-xs mt-4">
-                      <a href="/placeholder-flyer-id.pdf" download>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Flyer
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-12 p-6 bg-card border border-border rounded-lg text-center">
-                <p className="text-lg font-medium text-foreground mb-2">Nyatakan Minat Anda</p>
-                <p className="text-muted-foreground">Korporasi atau organisasi peminat dapat menghubungi kami melalui:</p>
-                <p className="mt-4 text-lg">
-                  <a href="mailto:contact@bandungtalentsource.com" className="text-primary hover:underline font-semibold">
-                    contact@bandungtalentsource.com
-                  </a>
-                  <br />
-                  atau WhatsApp di{" "}
-                  <a
-                    href="https://wa.me/628122101938"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline font-semibold"
-                  >
-                    +62 812-210-1938
-                  </a>
-                </p>
-              </div>
+        {/* Topics Grid */}
+        <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+        >
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Consultation Topics</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {topics.map((topic, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    >
+                        <Card className="h-full bg-card/50 border-border/50 hover:border-primary/30 transition-colors duration-300 text-center p-6">
+                            <div className="text-4xl mb-4">{topic.icon}</div>
+                            <h3 className="font-bold text-foreground mb-2">{topic.title}</h3>
+                            <p className="text-sm text-muted-foreground">{topic.description}</p>
+                        </Card>
+                    </motion.div>
+                ))}
             </div>
-          </section>
-        </div>
-      </main>
-    </div>
+        </motion.div>
+
+        {/* Implementation Stages */}
+        <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+        >
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Tailored to Your Stage</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {stages.map((stage, index) => (
+                    <Card key={index} className="p-6 bg-card/50 border-primary/10">
+                        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent text-white font-bold text-sm mb-4">
+                            {index + 1}
+                        </div>
+                        <h3 className="font-bold text-foreground mb-2">{stage.title}</h3>
+                        <p className="text-sm text-muted-foreground">{stage.description}</p>
+                    </Card>
+                ))}
+            </div>
+        </motion.div>
+
+        {/* Flyers */}
+        <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+        >
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Download Our Materials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {flyers.map((flyer, index) => (
+                    <Card key={index} className="overflow-hidden border-border/50 hover:shadow-lg transition-shadow duration-300 bg-card/50 backdrop-blur">
+                        <CardContent className="p-0 relative aspect-[1/1.414]">
+                            <Image 
+                                src={flyer.imgSrc || "/placeholder.svg"} 
+                                alt={flyer.title}
+                                fill
+                                className="object-cover"
+                            />
+                        </CardContent>
+                        <div className="p-4 space-y-2">
+                            <p className="font-semibold text-foreground">{flyer.title}</p>
+                            <Button asChild className="w-full bg-gradient-to-r from-primary to-accent text-white">
+                                <a href={flyer.downloadLink} download>
+                                    <Download className="mr-2 h-4 w-4" />
+                                    Download
+                                </a>
+                            </Button>
+                        </div>
+                    </Card>
+                ))}
+            </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+        >
+            <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20 p-8 md:p-12">
+                <CardTitle className="text-2xl md:text-3xl font-bold text-foreground mb-4">Ready to Consult?</CardTitle>
+                <CardDescription className="text-base mb-8">
+                    Get in touch with us today to schedule your live stream consultation session.
+                </CardDescription>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
+                        <a href="mailto:contact@bandungtalentsource.com">
+                            <Mail className="mr-2 h-5 w-5" />
+                            Email Us
+                        </a>
+                    </Button>
+                    <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent text-white">
+                        <a href="https://wa.me/628122101938" target="_blank" rel="noopener noreferrer">
+                            <MessageCircle className="mr-2 h-5 w-5" />
+                            WhatsApp Us
+                        </a>
+                    </Button>
+                </div>
+            </Card>
+        </motion.div>
+      </div>
+    </PageWrapper>
   )
 }
