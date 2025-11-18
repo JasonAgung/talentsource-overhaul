@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   description:
     "Transforming Indonesian companies through innovative Learning & Development strategies for the digital economy",
   generator: "v0.app",
+  icons: {
+    icon: "/ts-logo.png",
+  },
 }
 
 export default function RootLayout({
