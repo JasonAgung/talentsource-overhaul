@@ -104,11 +104,11 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-14 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-7 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
             {slides[currentSlide].subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-16 animate-fade-in-buttons">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-2 animate-fade-in-buttons">
             <Button
               size="lg"
               className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer relative overflow-hidden border-0"

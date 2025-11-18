@@ -134,22 +134,6 @@ export default function OpEd() {
   return (
     <section className="py-16 md:py-24 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 mt-0"
-        >
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8">
-            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-            Expert Insights
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 text-balance">Op-Ed Articles</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Expert perspectives on digital transformation, technology trends, and business strategy</p>
-        </motion.div>
-
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {currentItems.map((item, index) => (
             <motion.div
