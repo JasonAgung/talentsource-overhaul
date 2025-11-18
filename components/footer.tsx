@@ -1,129 +1,165 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import { Facebook, Twitter, Linkedin, Instagram, Youtube } from "lucide-react"
+"use client"
+import type React from "react"
+import type { ComponentProps, ReactNode } from "react"
+import { motion, useReducedMotion } from "framer-motion"
+import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, Mail, Phone, MapPin } from 'lucide-react'
+import Image from "next/image"
+
+interface FooterLink {
+  title: string
+  href: string
+  icon?: React.ComponentType<{ className?: string }>
+}
+
+interface FooterSection {
+  label: string
+  links: FooterLink[]
+}
+
+const footerLinks: FooterSection[] = [
+  {
+    label: "Services",
+    links: [
+      { title: "Talent Development", href: "/services" },
+      { title: "Executive Coaching", href: "/services" },
+      { title: "Organizational Consulting", href: "/services" },
+      { title: "Digital Skills Training", href: "/services" },
+    ],
+  },
+  {
+    label: "Company",
+    links: [
+      { title: "About Us", href: "/about" },
+      { title: "Case Studies", href: "/case-studies" },
+      { title: "Blog & Resources", href: "/blog" },
+      { title: "Careers", href: "/careers" },
+    ],
+  },
+  {
+    label: "Resources",
+    links: [
+      { title: "Free Webinars", href: "/webinars" },
+      { title: "Documentation", href: "/docs" },
+      { title: "Free Internship", href: "/free-internship" },
+      { title: "Contact Support", href: "/support" },
+    ],
+  },
+  {
+    label: "Follow Us",
+    links: [
+      { title: "LinkedIn", href: "#", icon: LinkedinIcon },
+      { title: "Instagram", href: "#", icon: InstagramIcon },
+      { title: "Facebook", href: "#", icon: FacebookIcon },
+      { title: "YouTube", href: "#", icon: YoutubeIcon },
+    ],
+  },
+]
 
 export function Footer() {
-  const footerSections = [
-    {
-      title: "Services",
-      links: [
-        "Educational Excellence",
-        "Leadership Development",
-        "Curriculum Design",
-        "Professional Training",
-        "Global Partnerships",
-        "Innovation Labs",
-      ],
-    },
-    {
-      title: "Company",
-      links: ["About Us", "Our Team", "Careers", "News & Updates", "Case Studies", "Testimonials"],
-    },
-    {
-      title: "Resources",
-      links: ["Documentation", "Best Practices", "Research Papers", "Webinars", "Blog", "FAQ"],
-    },
-    {
-      title: "Support",
-      links: ["Contact Us", "Help Center", "Community", "Privacy Policy", "Terms of Service", "Cookie Policy"],
-    },
-  ]
-
-  const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-  ]
-
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Newsletter Section */}
-        <div className="mb-12">
-          <div className="max-w-2xl">
-            <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-            <p className="text-primary-foreground/80 mb-6 text-pretty">
-              Subscribe to our newsletter for the latest insights, educational trends, and exclusive resources delivered
-              to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
-              />
-              <Button variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
+    <footer className="relative w-full bg-background border-t border-primary/10 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/2 to-accent/2 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-primary/5 rounded-full blur-3xl" />
 
-        <Separator className="bg-primary-foreground/20 mb-12" />
-
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-accent flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-sm">TS</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
+        {/* Main footer content */}
+        <div className="grid w-full gap-12 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
+          {/* Brand section */}
+          <AnimatedContainer className="lg:col-span-1 space-y-4">
+            <div className="flex items-center gap-2">
+              <img src="/ts-logo.png" alt="TalentSource Logo" className="h-10 w-auto" />
+              <div>
+                <p className="font-bold text-foreground">TalentSource</p>
+                <p className="text-xs text-muted-foreground">Talent Development</p>
               </div>
-              <span className="text-xl font-semibold">TalentSource</span>
             </div>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed text-pretty">
-              Empowering educational excellence through innovative solutions and strategic partnerships.
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Transforming Indonesian organizations through innovative talent development and digital solutions for sustainable growth.
             </p>
-          </div>
-
-          {/* Footer Links */}
-          {footerSections.map((section, index) => (
-            <div key={index}>
-              <h4 className="font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
-                      href="#"
-                      className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex gap-3 pt-4">
+              <a href="tel:+62" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <Phone className="h-4 w-4" />
+              </a>
+              <a href="mailto:contact@talentsource.com" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <Mail className="h-4 w-4" />
+              </a>
+              <a href="#" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+                <MapPin className="h-4 w-4" />
+              </a>
             </div>
+          </AnimatedContainer>
+
+          {/* Links sections */}
+          {footerLinks.map((section, index) => (
+            <AnimatedContainer key={section.label} delay={0.05 + index * 0.05}>
+              <div>
+                <h3 className="font-semibold text-foreground mb-4 text-sm uppercase tracking-wide">{section.label}</h3>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.title}>
+                      <a
+                        href={link.href}
+                        className="text-muted-foreground hover:text-primary text-sm inline-flex items-center transition-all duration-300 hover:translate-x-1 group"
+                      >
+                        {link.icon && <link.icon className="mr-2 h-4 w-4" />}
+                        {link.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedContainer>
           ))}
         </div>
 
-        <Separator className="bg-primary-foreground/20 mb-8" />
+        {/* Divider */}
+        <div className="my-12 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-sm text-primary-foreground/80 mb-4 md:mb-0">
-            © 2024 TalentSource. All rights reserved.
-          </div>
+        {/* Bottom section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <AnimatedContainer className="text-center md:text-left">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} TalentSource. All rights reserved. | Innovating Talent Development in Indonesia
+            </p>
+          </AnimatedContainer>
 
-          <div className="flex items-center space-x-4">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon
-              return (
-                <a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-9 h-9 bg-primary-foreground/10 hover:bg-primary-foreground/20 rounded-lg flex items-center justify-center transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              )
-            })}
-          </div>
+          <AnimatedContainer className="flex items-center gap-6">
+            <a href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              Privacy Policy
+            </a>
+            <span className="w-px h-4 bg-primary/20" />
+            <a href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              Terms of Service
+            </a>
+          </AnimatedContainer>
         </div>
       </div>
     </footer>
+  )
+}
+
+type ViewAnimationProps = {
+  delay?: number
+  className?: ComponentProps<typeof motion.div>["className"]
+  children: ReactNode
+}
+
+function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
+  const shouldReduceMotion = useReducedMotion()
+
+  if (shouldReduceMotion) {
+    return children
+  }
+
+  return (
+    <motion.div
+      initial={{ filter: "blur(4px)", translateY: -8, opacity: 0 }}
+      whileInView={{ filter: "blur(0px)", translateY: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.8 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   )
 }
