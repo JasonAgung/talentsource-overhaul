@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Cog, Brain, Smartphone, Users, Globe, ChevronRight, ArrowUpRight } from 'lucide-react'
 import { useState } from "react"
+import Link from "next/link"
 
 export function ServicesGrid() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
@@ -163,8 +164,10 @@ export function ServicesGrid() {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Let's discuss how our services can drive your organization's digital transformation journey
           </p>
-          <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-            Schedule a Consultation
+          <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" asChild>
+            <Link href="/webinar-live/live-stream-consultation">
+              Schedule a Consultation
+            </Link>
           </Button>
         </div>
       </div>
