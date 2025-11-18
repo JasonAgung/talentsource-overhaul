@@ -196,8 +196,8 @@ export function Header() {
 
           {/* Mobile Menu Content */}
           <div
-            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${
-              isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
+            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-opacity transition-transform duration-500 ease-out ${
+              isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"
             }`}
           >
             <div className="bg-card/90 dark:bg-slate-800/90 backdrop-blur-xl border border-primary/10 dark:border-primary/30 rounded-2xl p-4 shadow-2xl">
