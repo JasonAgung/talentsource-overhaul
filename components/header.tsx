@@ -44,6 +44,7 @@ export function Header() {
       ],
     },
     { name: "Free Internship", href: "/free-internship" },
+    { name: "Education Support", href: "/education-support" },
   ]
 
   useEffect(() => {
