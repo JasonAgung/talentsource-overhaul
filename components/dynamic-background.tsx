@@ -2,9 +2,19 @@
 
 import { useTheme } from "next-themes"
 import Aurora from "@/components/Aurora"
+import { useEffect, useState } from "react"
 
 export function DynamicBackground() {
   const { theme } = useTheme()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <>
