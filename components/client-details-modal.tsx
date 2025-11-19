@@ -34,9 +34,9 @@ export function ClientDetailsModal({ client, onClose }: ClientDetailsModalProps)
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg mx-4"
+            className="fixed inset-0 flex items-center justify-center p-4 z-50"
           >
-            <div className="bg-card border border-primary/20 rounded-2xl shadow-2xl p-8 relative">
+            <div className="bg-card border border-primary/20 rounded-2xl shadow-2xl p-8 relative max-w-lg w-full">
               {/* Close Button */}
               <button
                 onClick={onClose}

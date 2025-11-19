@@ -29,28 +29,28 @@ const footerLinks: FooterSection[] = [
   {
     label: "Company",
     links: [
-      { title: "About Us", href: "/about" },
+      { title: "About Us", href: "/about-us/company-profile" },
+      { title: "Standing Partners", href: "/about-us/standing-partners" },
       { title: "Case Studies", href: "/case-studies" },
-      { title: "Blog & Resources", href: "/blog" },
-      { title: "Careers", href: "/careers" },
+      { title: "Blog & Resources", href: "/op-ed" },
     ],
   },
   {
     label: "Resources",
     links: [
-      { title: "Free Webinars", href: "/webinars" },
-      { title: "Documentation", href: "/docs" },
+      { title: "Free Webinars", href: "/webinar-live/free-webinar" },
+      { title: "Live Consultation", href: "/webinar-live/live-stream-consultation" },
       { title: "Free Internship", href: "/free-internship" },
-      { title: "Contact Support", href: "/support" },
+      { title: "Education Support", href: "/education-support" },
     ],
   },
   {
     label: "Follow Us",
     links: [
-      { title: "LinkedIn", href: "#", icon: LinkedinIcon },
-      { title: "Instagram", href: "#", icon: InstagramIcon },
-      { title: "Facebook", href: "#", icon: FacebookIcon },
-      { title: "YouTube", href: "#", icon: YoutubeIcon },
+      { title: "LinkedIn", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: LinkedinIcon },
+      { title: "Instagram", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: InstagramIcon },
+      { title: "Facebook", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: FacebookIcon },
+      { title: "YouTube", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: YoutubeIcon },
     ],
   },
 ]
@@ -77,13 +77,13 @@ export function Footer() {
               Transforming Indonesian organizations through innovative talent development and digital solutions for sustainable growth.
             </p>
             <div className="flex gap-3 pt-4">
-              <a href="tel:+62" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+              <a href="tel:+6281770237849" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
                 <Phone className="h-4 w-4" />
               </a>
-              <a href="mailto:contact@talentsource.com" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+              <a href="mailto:contact@bandungtalentsource.com" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
                 <Mail className="h-4 w-4" />
               </a>
-              <a href="#" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+              <a href="https://share.google/Ug9tfNglWW3ZWokFz" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
                 <MapPin className="h-4 w-4" />
               </a>
             </div>
