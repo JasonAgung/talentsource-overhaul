@@ -3,6 +3,9 @@ import { ValueProposition } from "@/components/value-proposition"
 import { ServicesGrid } from "@/components/services-grid"
 import { ClientsSection } from "@/components/clients-section"
 import { ContactSection } from "@/components/contact-section"
+import { FeaturesBenefits } from "@/components/features-benefits"
+import { HowItWorks } from "@/components/how-it-works"
+import { FAQSection } from "@/components/faq-section"
 
 export default function HomePage() {
   return (
@@ -12,7 +15,10 @@ export default function HomePage() {
           <HeroSection />
           <ValueProposition />
           <ServicesGrid />
+          <FeaturesBenefits />
+          <HowItWorks />
           <ClientsSection />
+          <FAQSection />
           <ContactSection />
         </div>
       </main>
