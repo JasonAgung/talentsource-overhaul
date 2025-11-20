@@ -80,11 +80,11 @@ export function Header() {
     <>
       <motion.nav
         variants={{
-            visible: { y: 0 },
-            hidden: { y: "-150%" },
+          visible: { y: 0 },
+          hidden: { y: "-150%" },
         }}
         animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50`}
       >
         <div className="w-[90vw] max-w-xs md:max-w-7xl mx-auto">
@@ -176,7 +176,7 @@ export function Header() {
 
           {/* Mobile Menu Content */}
           <div
-            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-opacity transition-transform duration-500 ease-out ${
+            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-opacity transition-transform duration-400 ease-out ${
               isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8 pointer-events-none"
             }`}
           >
