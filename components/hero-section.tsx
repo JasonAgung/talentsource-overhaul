@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Play, Zap, Cpu, Network, ArrowRight } from 'lucide-react'
 import RotatingText from "./RotatingText"
@@ -62,76 +63,98 @@ export function HeroSection() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
+  const slideVariants = {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -50 },
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center px-4 py-8 overflow-hidden group">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background to-blue-100 dark:from-blue-950/30 dark:via-background dark:to-blue-900/20" />
-        <img
-          src={slides[currentSlide].image || "/placeholder.svg"}
-          alt="Hero background"
-          className="w-full h-full object-cover opacity-25 transition-opacity duration-1000"
-          key={slides[currentSlide].image}
-        />
+        <AnimatePresence>
+            <motion.img
+                key={slides[currentSlide].image}
+                src={slides[currentSlide].image || "/placeholder.svg"}
+                alt="Hero background"
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.25 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+            />
+        </AnimatePresence>
         {/* Decorative gradient orbs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float-delayed" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-float" />
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in-hero">
-        <div className="max-w-4xl">
-          {/* Badge with enhanced styling */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8 mt-12 animate-fade-in-badge transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-            <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-            {slides[currentSlide].badge}
-          </div>
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={currentSlide}
+                variants={slideVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl"
+            >
+                {/* Badge with enhanced styling */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8 mt-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+                    {slides[currentSlide].badge}
+                </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-balance mb-6 animate-fade-in-heading leading-tight text-foreground">
-            {slides[currentSlide].title}
-            <br />
-            <span className="inline-flex items-center justify-center flex-wrap gap-2 mt-6 sm:mt-8 md:mt-10">
-              <RotatingText
-                texts={slides[currentSlide].rotatingTexts}
-                mainClassName="px-3 sm:px-4 md:px-5 bg-gradient-to-r from-primary to-accent text-white overflow-hidden py-2 sm:py-2 md:py-3 justify-center rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                staggerFrom={"last"}
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-1 sm:pb-1 md:pb-2"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
-              />
-            </span>
-          </h1>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-balance mb-6 leading-tight text-foreground">
+                    {slides[currentSlide].title}
+                    <br />
+                    <span className="inline-flex items-center justify-center flex-wrap gap-2 mt-6 sm:mt-8 md:mt-10">
+                    <RotatingText
+                        texts={slides[currentSlide].rotatingTexts}
+                        mainClassName="px-3 sm:px-4 md:px-5 bg-gradient-to-r from-primary to-accent text-white overflow-hidden py-2 sm:py-2 md:py-3 justify-center rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                        staggerFrom={"last"}
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        exit={{ y: "-120%" }}
+                        staggerDuration={0.025}
+                        splitLevelClassName="overflow-hidden pb-1 sm:pb-1 md:pb-2"
+                        transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                        rotationInterval={2000}
+                    />
+                    </span>
+                </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-7 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
-            {slides[currentSlide].subtitle}
-          </p>
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-2xl sm:max-w-3xl mx-auto mb-10 sm:mb-7 leading-relaxed px-4 sm:px-0 font-light">
+                    {slides[currentSlide].subtitle}
+                </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-2 animate-fade-in-buttons">
-            <Link href="/services">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer relative overflow-hidden border-0"
-              >
-                Explore Our Services
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-2">
+                    <Link href="/services">
+                    <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-primary to-accent text-white rounded-full px-8 py-6 text-base font-semibold transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer relative overflow-hidden border-0"
+                    >
+                        Explore Our Services
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    </Link>
 
-            <Link href="/webinar-live/live-stream-consultation">
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full px-8 py-6 text-base font-semibold border-primary/30 hover:bg-primary/5 hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 group bg-white dark:bg-background cursor-pointer"
-              >
-                <Play className="h-4 w-4" />
-                Free Consultation
-              </Button>
-            </Link>
-          </div>
-        </div>
+                    <Link href="/webinar-live/live-stream-consultation">
+                    <Button
+                        variant="outline"
+                        size="lg"
+                        className="rounded-full px-8 py-6 text-base font-semibold border-primary/30 hover:bg-primary/5 hover:border-primary/60 transition-all duration-300 hover:-translate-y-1 group bg-white dark:bg-background cursor-pointer"
+                    >
+                        <Play className="h-4 w-4" />
+                        Free Consultation
+                    </Button>
+                    </Link>
+                </div>
+            </motion.div>
+        </AnimatePresence>
       </div>
 
       <button

@@ -84,11 +84,11 @@ export function FAQSection() {
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="border-t border-primary/10"
+                      initial={{ opacity: 0, maxHeight: 0 }}
+                      animate={{ opacity: 1, maxHeight: "500px" }}
+                      exit={{ opacity: 0, maxHeight: 0 }}
+                      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="border-t border-primary/10 overflow-hidden"
                     >
                       <div className="p-6 pt-4 text-muted-foreground leading-relaxed">
                         {faq.answer}

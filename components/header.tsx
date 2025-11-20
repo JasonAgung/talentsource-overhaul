@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Menu, X, Search, ChevronDown } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
@@ -13,10 +13,19 @@ type NavItem =
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [hasLoaded, setHasLoaded] = useState(false)
-  const lastScrollY = useRef(0)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous !== undefined && latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  })
+
 
   const navigation: NavItem[] = [
     { name: "Home", href: "/" },
@@ -47,37 +56,6 @@ export function Header() {
     { name: "Education Support", href: "/education-support" },
   ]
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setHasLoaded(true)
-    }, 100)
-
-    const controlNavbar = () => {
-      if (typeof window !== "undefined") {
-        const currentScrollY = window.scrollY
-        if (currentScrollY > 50) {
-          if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
-            setIsVisible(false)
-          } else if (lastScrollY.current - currentScrollY > 5) {
-            setIsVisible(true)
-          }
-        } else {
-          setIsVisible(true)
-        }
-        lastScrollY.current = currentScrollY
-      }
-    }
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar, { passive: true })
-      return () => {
-        window.removeEventListener("scroll", controlNavbar)
-        clearTimeout(timer)
-      }
-    }
-
-    return () => clearTimeout(timer)
-  }, [])
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("/")) {
@@ -100,13 +78,14 @@ export function Header() {
 
   return (
     <>
-      <nav
-        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"
-        } ${hasLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        style={{
-          transition: hasLoaded ? "all 0.5s ease-out" : "opacity 0.8s ease-out, transform 0.8s ease-out",
+      <motion.nav
+        variants={{
+            visible: { y: 0 },
+            hidden: { y: "-150%" },
         }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50`}
       >
         <div className="w-[90vw] max-w-xs md:max-w-7xl mx-auto">
           <div className="bg-background/70 dark:bg-slate-900/80 backdrop-blur-xl border border-primary/10 dark:border-primary/30 shadow-xl rounded-2xl px-4 py-3 md:px-8 md:py-4">
@@ -236,7 +215,7 @@ export function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer`}
+                      className={`text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-.pointer`}
                       onClick={() => {
                         if (item.href.startsWith("#")) {
                           scrollToSection(item.href)
@@ -255,7 +234,7 @@ export function Header() {
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
     </>
   )
 }
