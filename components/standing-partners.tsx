@@ -67,22 +67,22 @@ const partnersData = [
       },
     ],
   },
-  {
-    name: "Tata Wirasasmita",
-    imageSrc: "/Tata Wirasasmita.png",
-    role: "Data Analytics & HR Management Expert",
-    expertise: ["Data Analytics", "Human Capital", "Statistical Analysis"],
-    content: [
-      {
-        type: "paragraph",
-        text: "Master of Management and Statistics with extensive experience in data analytics projects across multiple industries including agro-business, finance, and education.",
-      },
-      {
-        type: "paragraph",
-        text: "Combines unique skillsets of human capital management with advanced data analytics to drive strategic organizational decisions.",
-      },
-    ],
-  },
+  // {
+  //   name: "Tata Wirasasmita",
+  //   imageSrc: "/Tata Wirasasmita.png",
+  //   role: "Data Analytics & HR Management Expert",
+  //   expertise: ["Data Analytics", "Human Capital", "Statistical Analysis"],
+  //   content: [
+  //     {
+  //       type: "paragraph",
+  //       text: "Master of Management and Statistics with extensive experience in data analytics projects across multiple industries including agro-business, finance, and education.",
+  //     },
+  //     {
+  //       type: "paragraph",
+  //       text: "Combines unique skillsets of human capital management with advanced data analytics to drive strategic organizational decisions.",
+  //     },
+  //   ],
+  // },
   {
     name: "Anastasia Sherin",
     imageSrc: "/Anastasia Sherin.png",

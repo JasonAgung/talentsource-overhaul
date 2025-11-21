@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { ChevronDown } from 'lucide-react'
@@ -32,6 +32,61 @@ const faqs = [
   },
 ]
 
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+function FaqItem({ faq, index, openIndex, setOpenIndex }: { faq: Faq; index: number; openIndex: number | null; setOpenIndex: (index: number | null) => void }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const isOpen = openIndex === index;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+    >
+      <Card className="border-primary/10 bg-card/50 backdrop-blur overflow-hidden">
+        <button
+          onClick={() => setOpenIndex(isOpen ? null : index)}
+          className="w-full flex items-center justify-between p-6 hover:bg-primary/5 transition-colors duration-300 text-left cursor-pointer"
+        >
+          <h3 className="font-semibold text-foreground text-lg pr-4">{faq.question}</h3>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0"
+          >
+            <ChevronDown className="h-5 w-5 text-primary" />
+          </motion.div>
+        </button>
+
+        <motion.div
+          ref={contentRef}
+          initial={{ opacity: 0, maxHeight: 0 }}
+          animate={{
+            opacity: isOpen ? 1 : 0,
+            maxHeight: isOpen ? contentRef.current?.scrollHeight : 0,
+            transition: { duration: 0.3, ease: "easeOut" }
+          }}
+          exit={{
+            opacity: 0,
+            maxHeight: 0,
+            transition: { duration: 0.3, ease: "easeIn" }
+          }}
+          className="border-t border-primary/10 overflow-hidden"
+        >
+          <div className="p-6 pt-4 text-muted-foreground leading-relaxed">
+            {faq.answer}
+          </div>
+        </motion.div>
+      </Card>
+    </motion.div>
+  )
+}
+
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
@@ -59,44 +114,13 @@ export function FAQSection() {
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <motion.div
+            <FaqItem
               key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-            >
-              <Card className="border-primary/10 bg-card/50 backdrop-blur overflow-hidden">
-                <button
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full flex items-center justify-between p-6 hover:bg-primary/5 transition-colors duration-300 text-left cursor-pointer"
-                >
-                  <h3 className="font-semibold text-foreground text-lg pr-4">{faq.question}</h3>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-shrink-0"
-                  >
-                    <ChevronDown className="h-5 w-5 text-primary" />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto", transition: { duration: 0.3, ease: "easeOut" } }}
-                      exit={{ opacity: 0, height: 0, transition: { duration: 0.3, ease: "easeIn" } }}
-                      className="border-t border-primary/10"
-                    >
-                      <div className="p-6 pt-4 text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Card>
-            </motion.div>
+              faq={faq}
+              index={index}
+              openIndex={openIndex}
+              setOpenIndex={setOpenIndex}
+            />
           ))}
         </div>
 
