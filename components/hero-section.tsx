@@ -80,7 +80,7 @@ export function HeroSection() {
                 alt="Hero background"
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.25 }}
+                animate={{ opacity: 0.35 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
             />

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Menu, X, Search, ChevronDown } from 'lucide-react'
 import { cn } from "@/lib/utils"
@@ -12,6 +13,7 @@ type NavItem =
   | { name: string; href?: string; subMenu: { name: string; href: string }[] }
 
 export function Header() {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [hidden, setHidden] = useState(false);
@@ -103,7 +105,7 @@ export function Header() {
                 {navigation.map((item) =>
                   item.subMenu ? (
                     <div key={item.name} className="relative group">
-                      <button className="flex items-center text-sm font-medium text-foreground hover:text-primary px-3 py-2 rounded-lg transition-all duration-300 group-hover:bg-primary/10">
+                      <button className={cn("flex items-center text-sm font-medium text-foreground hover:text-primary px-3 py-2 rounded-lg transition-all duration-300 group-hover:bg-primary/10", { "bg-primary/10 text-primary": item.subMenu.some(sub => pathname === sub.href) })}>
                         {item.name}
                         <ChevronDown className="ml-1 h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
                       </button>
@@ -113,7 +115,7 @@ export function Header() {
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="block px-4 py-2.5 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+                              className={cn("block px-4 py-2.5 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors duration-200", { "bg-primary/10 text-primary": pathname === sub.href })}
                             >
                               {sub.name}
                             </Link>
@@ -125,7 +127,10 @@ export function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-sm font-medium text-foreground hover:text-primary px-3 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 relative group"
+                      className={cn(
+                        "text-sm font-medium text-foreground hover:text-primary px-3 py-2 rounded-lg transition-all duration-300 hover:bg-primary/10 relative group",
+                        { "bg-primary/10 text-primary": pathname === item.href }
+                      )}
                     >
                       {item.name}
                       <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -187,7 +192,7 @@ export function Header() {
                     <div key={item.name}>
                       <button
                         onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                        className={`w-full flex justify-between items-center text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer`}
+                        className={cn("w-full flex justify-between items-center text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer", { "bg-primary/10 text-primary": item.subMenu.some(sub => pathname === sub.href) })}
                       >
                         <span>{item.name}</span>
                         <ChevronDown
@@ -202,7 +207,7 @@ export function Header() {
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="block text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer"
+                              className={cn("block text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer", { "bg-primary/10 text-primary": pathname === sub.href })}
                               onClick={() => setIsOpen(false)}
                             >
                               {sub.name}
@@ -215,7 +220,7 @@ export function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-.pointer`}
+                      className={cn("text-foreground hover:text-primary hover:bg-primary/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer", { "bg-primary/10 text-primary": pathname === item.href })}
                       onClick={() => {
                         if (item.href.startsWith("#")) {
                           scrollToSection(item.href)

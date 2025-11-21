@@ -88,7 +88,7 @@ function FaqItem({ faq, index, openIndex, setOpenIndex }: { faq: Faq; index: num
 }
 
 export function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <section className="relative py-20 lg:py-28 px-4 overflow-hidden">
