@@ -11,19 +11,33 @@ export function CorporatePartners() {
     { icon: Check, title: "Mission Alignment", text: "Believe and fully aligned to TS mission statement" },
   ]
 
+  const partners = [
+    {
+      name: "Strategic Partner (2019)",
+      logo: "/corporate-partners.png", 
+      description: "In December 2019, TS sealed a strategic long-term partnership agreement with a vibrant high-performing digital service start-up in Bandung, combining complementary resources of both companies."
+    },
+    {
+      name: "PT Iotera Sinergi Digital",
+      logo: "/Iotera-logo.png", 
+      description: "A strategic partner focused on IoT integration and digital synergy, strengthening our technological ecosystem and service capabilities."
+    }
+  ]
+
   return (
     <>
       {/* Overview Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center"
-          >
-            <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Partnership Criteria</h2>
               <p className="text-lg text-muted-foreground">
                 TS has standing partnership agreements with companies that meet our strategic criteria for long-term collaboration and mutual growth.
@@ -49,35 +63,50 @@ export function CorporatePartners() {
                   )
                 })}
               </div>
+            </motion.div>
+
+            <div className="space-y-6">
+              <motion.h3 
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 className="text-2xl font-bold text-foreground mb-4"
+              >
+                Our Strategic Partners
+              </motion.h3>
+
+              {partners.map((partner, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
+                  className="relative"
+                >
+                  <Card className="p-8 text-center border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur hover:shadow-lg transition-all duration-300">
+                    <div className="flex justify-center mb-6 h-24 items-center">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        width={300}
+                        height={100}
+                        className="object-contain max-w-full max-h-full"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">{partner.name}</h4>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {partner.description}
+                    </p>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <Card className="p-8 text-center border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur">
-                <div className="flex justify-center mb-6">
-                  <Image
-                    src="/corporate-partners.png"
-                    alt="corporate-partners"
-                    width={300}
-                    height={100}
-                    className="object-contain max-w-full"
-                  />
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  In December 2019, TS sealed a strategic long-term partnership agreement with a vibrant high-performing digital service start-up in Bandung, combining complementary resources of both companies.
-                </p>
-              </Card>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 rounded-3xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -117,7 +146,6 @@ export function CorporatePartners() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <motion.div
