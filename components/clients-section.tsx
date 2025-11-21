@@ -17,6 +17,8 @@ const clients: Client[] = [
   { name: "Telkomsel", logo: "/telkomsel-logo.png", featured: true, description: "Telkomsel is the largest cellular telecommunications services provider in Indonesia." },
   { name: "Trikomsel", logo: "/trikomsel.png", featured: false, description: "" },
   { name: "Agit", logo: "/agit.png", featured: false, description: "" },
+  { name: "Astra Infra", logo: "/astra-infra-logo.png", featured: false, description: "Astra Infra is a leading investor and operator in the Indonesian infrastructure sector, focusing on toll roads and ports." },
+  { name: "Nestle", logo: "/generic-bird-nest-logo.png", featured: false, description: "Nestlé is a Swiss multinational food and drink processing conglomerate corporation headquartered in Vevey, Vaud, Switzerland." },
   { name: "Bumi Menara Internusa-logo", logo: "/Bumi Menara Internusa-logo.jpg", featured: true, description: "Otomasi penyiapan dokumentasi export menggunakan RPA \n Dokumen yang melibatkan beberapa bagian/ divisi \n Menyangkut juga akses ke beberapa web otoritas export \n Meliputi dokumen pre dan post shipment" },
   { name: "BSI Syariah", logo: "/BSI Syariah.png", featured: true, description: "Desain dan implementasi sistem Smart Vault untuk Bullion Bank (Bank Emas) \n Sistem yang dikembangkan meliputi hardware dan software \n Salah satu bentuk penerapan IoT pada proses bisnis \n " },
   { name: "Telkom Indonesia", logo: "/telkom-indonesia-logo.png", featured: true, description: "Telkom Indonesia is a state-owned telecommunication company and the largest in the country." },
