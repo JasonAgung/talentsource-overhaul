@@ -15,7 +15,7 @@ export function ClientsSection() {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null)
 
   const clients: Client[] = [
-    { name: "Bank BCA", logo: "/bca-bank-logo.jpg", description: "Bank Central Asia (BCA) is one of the largest private banks in Indonesia, offering a wide range of financial services." },
+    { name: "Bank BCA", logo: "/bca-bank-logo.png", description: "Bank Central Asia (BCA) is one of the largest private banks in Indonesia, offering a wide range of financial services." },
     { name: "Telkomsel", logo: "/telkomsel-logo.png", description: "Telkomsel is the largest cellular telecommunications services provider in Indonesia." },
     { name: "Telkom Indonesia", logo: "/telkom-indonesia-logo.jpg", description: "Telkom Indonesia is a state-owned telecommunication company and the largest in the country." },
     { name: "Pegadaian", logo: "/pegadaian-logo.jpg", description: "Pegadaian is a state-owned company in Indonesia providing pawn services and other financial solutions." },
