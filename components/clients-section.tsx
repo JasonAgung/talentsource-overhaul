@@ -25,8 +25,6 @@ const clients: Client[] = [
   { name: "Peruri", logo: "/peruri-logo.png", featured: true, description: "Peruri is the state-owned company responsible for printing the Indonesian rupiah currency and other security documents." },
   { name: "Yayasan Pendidikan Warga", logo: "/yayasan-pendidikan-warga.png", featured: false, description: "" },
   { name: "INKA", logo: "/inka-logo.png", featured: true, description: "INKA (Industri Kereta Api) is a state-owned rolling stock manufacturer in Indonesia." },
-  { name: "Astra Infra", logo: "/astra-infra-logo.png", featured: true, description: "Astra Infra is a leading investor and operator in the Indonesian infrastructure sector, focusing on toll roads and ports." },
-  { name: "Nestle", logo: "/generic-bird-nest-logo.png", featured: true, description: "Nestlé is a Swiss multinational food and drink processing conglomerate corporation headquartered in Vevey, Vaud, Switzerland." },
   { name: "Infomedia", logo: "/infomedia-logo.png", featured: true, description: "Infomedia Nusantara is a subsidiary of Telkom Indonesia, focusing on business process management and contact center services." },
   { name: "Unpar", logo: "/unpar-university-logo.jpg", featured: true, description: "Parahyangan Catholic University (Unpar) is one of the oldest and most prestigious private universities in Indonesia." },
   { name: "Cibavision", logo: "/cibavision-logo.png", featured: true, description: "CIBA Vision was a manufacturer of contact lenses and lens care products, now part of Alcon." },
