@@ -48,9 +48,6 @@ const footerLinks: FooterSection[] = [
     label: "Follow Us",
     links: [
       { title: "LinkedIn", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: LinkedinIcon },
-      { title: "Instagram", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: InstagramIcon },
-      { title: "Facebook", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: FacebookIcon },
-      { title: "YouTube", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: YoutubeIcon },
     ],
   },
 ]
@@ -77,7 +74,7 @@ export function Footer() {
               Transforming Indonesian organizations through innovative talent development and digital solutions for sustainable growth.
             </p>
             <div className="flex gap-3 pt-4">
-              <a href="tel:+6281770237849" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
+              <a href="https://wa.me/6281770237849" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">
                 <Phone className="h-4 w-4" />
               </a>
               <a href="mailto:contact@bandungtalentsource.com" className="p-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-primary transition-colors duration-300 hover:scale-110">

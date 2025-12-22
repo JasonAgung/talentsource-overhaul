@@ -133,15 +133,12 @@ export function ServicesGrid() {
                   {/* Points - shown when expanded */}
                   {isExpanded && (
                     <div className="space-y-3 mb-6 animate-fade-in">
-                      {service.points?.slice(0, 3).map((point, pointIndex) => (
+                      {service.points?.map((point, pointIndex) => (
                         <div key={pointIndex} className="flex items-start gap-3">
                           <ChevronRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                           <span className="text-sm text-muted-foreground">{point}</span>
                         </div>
                       ))}
-                      {service.points && service.points.length > 3 && (
-                        <p className="text-sm text-primary font-medium">+{service.points.length - 3} more benefits</p>
-                      )}
                     </div>
                   )}
 

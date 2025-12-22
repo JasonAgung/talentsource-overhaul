@@ -135,7 +135,7 @@ export function FAQSection() {
             Still have questions? We'd love to hear from you.
           </p>
           <a
-            href="/contact"
+            href="https://wa.me/6281770237849"
             className="inline-flex items-center text-primary font-semibold hover:underline transition-all"
           >
             Get in touch with our team

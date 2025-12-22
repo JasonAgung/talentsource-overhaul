@@ -80,7 +80,7 @@ export function HeroSection() {
                 alt="Hero background"
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.35 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
             />
@@ -91,7 +91,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      <div className="max-w-4xl mx-auto text-center relative z-10 pt-20">
         <AnimatePresence mode="wait">
             <motion.div
                 key={currentSlide}
@@ -102,12 +102,6 @@ export function HeroSection() {
                 transition={{ duration: 0.5 }}
                 className="max-w-4xl"
             >
-                {/* Badge with enhanced styling */}
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-md border border-primary/20 text-primary text-sm font-semibold mb-8 mt-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-                    {slides[currentSlide].badge}
-                </div>
-
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-balance mb-6 leading-tight text-foreground">
                     {slides[currentSlide].title}
                     <br />
@@ -171,21 +165,6 @@ export function HeroSection() {
       >
         <ChevronRight className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
       </button>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3 bg-white/50 dark:bg-background/50 px-4 py-3 rounded-full backdrop-blur-md border border-primary/10">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`transition-all duration-300 rounded-full ${
-              index === currentSlide
-                ? "bg-primary w-8 h-3 shadow-lg"
-                : "bg-primary/40 w-3 h-3 hover:bg-primary/60"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </section>
   )
 }
