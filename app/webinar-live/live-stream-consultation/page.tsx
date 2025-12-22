@@ -184,7 +184,7 @@ export default function LiveStreamPage() {
                         </a>
                     </Button>
                     <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent text-white">
-                        <a href="tel:+6281770237849" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/6281770237849" target="_blank" rel="noopener noreferrer">
                             <MessageCircle className="mr-2 h-5 w-5" />
                             WhatsApp Us
                         </a>
