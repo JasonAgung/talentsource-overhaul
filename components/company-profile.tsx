@@ -6,9 +6,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { CheckCircle, Lightbulb, Target, Users } from 'lucide-react'
+import countriesLib from "i18n-iso-countries"
+import enLocale from "i18n-iso-countries/langs/en.json"
+
+countriesLib.registerLocale(enLocale)
+
+const countries = Object.values(
+  countriesLib.getNames("en", { select: "official" })
+).sort()
 
 export default function CompanyProfilePage() {
-  const countries = ["Afghanistan", "Indonesia", "Malaysia", "Singapore", "United States", "United Kingdom"]
+  // const countries = ["Afghanistan", "Indonesia", "Malaysia", "Singapore", "United States", "United Kingdom"]
 
   const values = [
     { icon: Target, title: "Mission-Driven", description: "Focused on transforming Indonesian organizations through digital innovation" },
