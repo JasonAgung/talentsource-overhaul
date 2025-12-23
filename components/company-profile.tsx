@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -6,23 +8,52 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { CheckCircle, Lightbulb, Target, Users } from 'lucide-react'
+import { useMemo } from "react"
 import countriesLib from "i18n-iso-countries"
 import enLocale from "i18n-iso-countries/langs/en.json"
 
 countriesLib.registerLocale(enLocale)
 
-const countries = Object.values(
-  countriesLib.getNames("en", { select: "official" })
-).sort()
-
 export default function CompanyProfilePage() {
   // const countries = ["Afghanistan", "Indonesia", "Malaysia", "Singapore", "United States", "United Kingdom"]
+  const countries = useMemo(() => {
+    return Object.values(
+      countriesLib.getNames("en", { select: "official" })
+    ).sort()
+  }, [])
 
   const values = [
     { icon: Target, title: "Mission-Driven", description: "Focused on transforming Indonesian organizations through digital innovation" },
     { icon: Users, title: "Collaborative", description: "Partnering with clients to achieve sustainable digital transformation" },
     { icon: Lightbulb, title: "Innovative", description: "Leveraging cutting-edge techniques and industry best practices" },
   ]
+
+  const handleDownload = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    try {
+      const response = await fetch("/company-profile.pdf")
+      const blob = await response.blob()
+
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement("a")
+      link.href = url
+      link.download = "TalentSource-Company-Profile.pdf"
+
+      document.body.appendChild(link)
+      link.click()
+
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+
+      // ⏱️ reload setelah download dimulai
+      setTimeout(() => {
+        window.location.reload()
+      }, 300)
+    } catch (error) {
+      console.error("Failed to download file:", error)
+    }
+  }
 
   return (
     <>
@@ -150,7 +181,7 @@ export default function CompanyProfilePage() {
             <Card className="border-primary/20 bg-card/50 backdrop-blur p-8 md:p-10">
               <h2 className="text-2xl font-bold text-foreground mb-2">Get Our Company Profile</h2>
               <p className="text-muted-foreground mb-8">Fill out the form below to download our comprehensive company profile document.</p>
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleDownload}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <Label htmlFor="first-name" className="text-foreground font-medium">
@@ -219,7 +250,11 @@ export default function CompanyProfilePage() {
                   </Select>
                 </div>
                 <div className="pt-4">
-                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  >
                     Download Profile
                   </Button>
                 </div>
