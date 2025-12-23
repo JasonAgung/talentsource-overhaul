@@ -70,8 +70,9 @@ export default function CompanyProfilePage() {
         </div>
       </section>
 
+      {/* FEEDBACK: Dihapus karena terlalu bombastis dan kurang realistis */}
       {/* Section 2: Company stats and highlights */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 rounded-3xl">
+      {/* <section className="py-16 md:py-24 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 rounded-3xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -94,7 +95,7 @@ export default function CompanyProfilePage() {
             </Card>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 3: Expertise areas */}
       <section className="py-16 md:py-24">

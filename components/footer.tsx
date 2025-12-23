@@ -48,9 +48,10 @@ const footerLinks: FooterSection[] = [
     label: "Follow Us",
     links: [
       { title: "LinkedIn", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: LinkedinIcon },
-      { title: "Instagram", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: InstagramIcon },
-      { title: "Facebook", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: FacebookIcon },
-      { title: "YouTube", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: YoutubeIcon },
+      // FEEDBACK: Sosial media lain dihapus karena tidak aktif
+      // { title: "Instagram", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: InstagramIcon },
+      // { title: "Facebook", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: FacebookIcon },
+      // { title: "YouTube", href: "https://www.linkedin.com/in/bdgtalentsource/", icon: YoutubeIcon },
     ],
   },
 ]
