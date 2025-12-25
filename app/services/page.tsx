@@ -1,11 +1,13 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { CheckCircle, ArrowRight, Zap, BarChart3, Smartphone, Users, Lightbulb, Download } from 'lucide-react'
+import { CheckCircle, Zap, BarChart3, Smartphone, Users, Lightbulb, Download, X, Loader2, MailCheck } from 'lucide-react'
 import Link from "next/link"
 
+// --- 1. DATA SERVICES (TETAP SAMA) ---
 const rpaServices = [
   { title: "Free Webinar: RPA Introduction", icon: "📹" },
   { title: "Live Coaching/Workshop: Make Your First Robots", icon: "🎯" },
@@ -111,7 +113,225 @@ const processSteps = [
   }
 ]
 
+// --- 2. UPDATED COMPONENT: DOWNLOAD MODAL ---
+function DownloadModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  
+  // State untuk data form
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    company: "",
+    email: "",
+    country: "Indonesia"
+  })
+
+  // State untuk melacak field mana yang sudah disentuh (onBlur)
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+
+  const handleClose = () => {
+    setIsSuccess(false)
+    setIsLoading(false)
+    setFormData({ firstName: "", lastName: "", company: "", email: "", country: "Indonesia" })
+    setTouched({})
+    onClose()
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name } = e.target
+    setTouched(prev => ({ ...prev, [name]: true }))
+  }
+
+  // Fungsi helper untuk menentukan warna border
+  const getInputClass = (fieldName: keyof typeof formData) => {
+    const isTouched = touched[fieldName]
+    const value = formData[fieldName]
+    
+    // Base class
+    let borderClass = "border-gray-300" // Default ABU (sesuai request)
+
+    if (isTouched) {
+      if (!value) {
+        borderClass = "border-red-500 focus:border-red-500 focus:ring-red-200" // MERAH jika kosong & tersentuh
+      } else if (fieldName === 'email' && !value.includes('@')) {
+         borderClass = "border-red-500 focus:border-red-500 focus:ring-red-200" // MERAH jika email tidak valid
+      } else {
+        borderClass = "border-blue-500 focus:border-blue-500 focus:ring-blue-200" // BIRU jika valid
+      }
+    }
+
+    return `w-full px-3 py-2 rounded-md border ${borderClass} focus:outline-none focus:ring-2 text-sm bg-background transition-colors duration-200`
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    // Validasi sederhana sebelum submit
+    if (!formData.firstName || !formData.lastName || !formData.company || !formData.email.includes('@')) {
+       // Tandai semua sebagai touched agar merah semua
+       setTouched({ firstName: true, lastName: true, company: true, email: true, country: true })
+       return
+    }
+
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+      setIsSuccess(true)
+    }, 1500)
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleClose}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-lg bg-white dark:bg-card rounded-xl shadow-2xl overflow-hidden z-10"
+          >
+            {!isSuccess ? (
+              <>
+                <div className="flex items-center justify-between px-6 py-4 border-b">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    Fill The Form to Download About RPA
+                  </h3>
+                  <button onClick={handleClose} className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <X className="h-5 w-5 text-muted-foreground" />
+                  </button>
+                </div>
+
+                <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground">First name</label>
+                    <input 
+                      name="firstName"
+                      type="text" 
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClass("firstName")}
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground">Last name</label>
+                    <input 
+                      name="lastName"
+                      type="text" 
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClass("lastName")}
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground">Company/Organization</label>
+                    <input 
+                      name="company"
+                      type="text" 
+                      value={formData.company}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClass("company")}
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground">Work email</label>
+                    <input 
+                      name="email"
+                      type="email" 
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClass("email")}
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-muted-foreground">Select Country</label>
+                    <select 
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 text-sm bg-background"
+                    >
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="Malaysia">Malaysia</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="pt-2">
+                    <motion.button 
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-2.5 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded shadow transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "Download"
+                      )}
+                    </motion.button>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <div className="p-8 flex flex-col items-center text-center space-y-4 animate-in fade-in zoom-in duration-300">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                  <MailCheck className="h-8 w-8 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground">Brochure Sent!</h3>
+                <p className="text-muted-foreground max-w-xs mx-auto">
+                  We have sent the RPA brochure to <span className="font-semibold text-foreground">{formData.email}</span>. Please check your inbox.
+                </p>
+                <motion.button
+                   whileHover={{ scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   onClick={handleClose}
+                   className="mt-6 px-8 py-2 bg-primary/10 text-primary hover:bg-primary/20 font-semibold rounded-full transition-colors"
+                >
+                  Close
+                </motion.button>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+// --- 3. MAIN PAGE COMPONENT ---
 export default function ServicesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white dark:bg-transparent">
       <main className="relative">
@@ -215,10 +435,20 @@ export default function ServicesPage() {
                           </div>
 
                           {service.buttonText && (
-                            <Button className="bg-gradient-to-r from-primary to-accent text-white rounded-lg px-6 font-semibold gap-2">
-                              <Download className="h-4 w-4" />
-                              {service.buttonText}
-                            </Button>
+                            // --- REVISI: WRAP BUTTON DENGAN MOTION.DIV AGAR ADA EFEK HOVER PADA TRIGGER ---
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="inline-block"
+                            >
+                                <Button 
+                                onClick={() => setIsModalOpen(true)}
+                                className="bg-gradient-to-r from-primary to-accent text-white rounded-lg px-6 font-semibold gap-2"
+                                >
+                                <Download className="h-4 w-4" />
+                                {service.buttonText}
+                                </Button>
+                            </motion.div>
                           )}
                         </div>
 
@@ -271,7 +501,8 @@ export default function ServicesPage() {
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-3">{item.step}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </Card>                  {index < processSteps.length - 1 && (
+                  </Card>
+                  {index < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-1/3 -right-3 w-6 h-1 bg-gradient-to-r from-primary to-accent" />
                   )}
                 </motion.div>
@@ -311,6 +542,9 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
+
+      {/* Render Modal */}
+      <DownloadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
